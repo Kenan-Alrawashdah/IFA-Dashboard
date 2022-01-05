@@ -23,6 +23,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
             link: '/pages/Store',
           }
         ],
+  },
+    {
+    title: 'Authh',
+    icon: 'shopping-cart-outline',
+    link: '/authh/login',
   }
   // {
   //   title: 'E-commerce',

@@ -22,6 +22,8 @@ import {
 } from '@nebular/theme';
 import { AdminComponent } from './components/admin/admin.component';
 import { StoreComponent } from './components/store/store.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { NbAuthComponent } from '@nebular/auth';
 
 @NgModule({
   declarations: [AppComponent, AdminComponent, StoreComponent],

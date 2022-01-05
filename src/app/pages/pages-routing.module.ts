@@ -6,6 +6,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
 import { AdminComponent } from '../components/admin/admin.component';
+import { NbAuthComponent } from '@nebular/auth';
 
 const routes: Routes = [{
   path: '',
@@ -79,6 +80,12 @@ const routes: Routes = [{
       loadChildren: () => import('./miscellaneous/miscellaneous.module')
         .then(m => m.MiscellaneousModule),
     },
+    {
+      path: 'miscellaneous',
+      loadChildren: () => import('./miscellaneous/miscellaneous.module')
+        .then(m => m.MiscellaneousModule),
+    },
+    
     {
       path: '',
       redirectTo: 'Admin',

@@ -9,6 +9,7 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 import { AdminModule } from '../components/admin/routting/admin.module';
 import { StoreModule } from '../components/store/routting/store.module';
+import { AuthModule } from '../components/auth/routing/auth.module';
 
 @NgModule({
   imports: [
@@ -19,7 +20,7 @@ import { StoreModule } from '../components/store/routting/store.module';
     ECommerceModule,
     MiscellaneousModule,
     AdminModule,
-    StoreModule
+    StoreModule,
   ],
   declarations: [
     PagesComponent,
