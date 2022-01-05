@@ -1,4 +1,4 @@
-import { TestComponent } from './../test/test.component';
+import { TestComponent } from '../test/test.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -9,12 +9,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NbAuthModule } from '@nebular/auth';
 import { BrowserModule } from '@angular/platform-browser';
+import { RegisterComponent } from '../Register/Register.component';
 
 
 @NgModule({
   declarations: [
     LoginComponent,
-    TestComponent
+    TestComponent,
+    RegisterComponent
   ],
   imports: [
     AuthRoutingModule,
