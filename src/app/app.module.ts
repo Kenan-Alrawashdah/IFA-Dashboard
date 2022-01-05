@@ -1,3 +1,4 @@
+
 /**
  * @license
  * Copyright Akveo. All Rights Reserved.
@@ -24,12 +25,15 @@ import { AdminComponent } from './components/admin/admin.component';
 import { StoreComponent } from './components/store/store.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { NbAuthComponent } from '@nebular/auth';
-import { TestComponent } from './components/auth/test/test.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+// import { TestComponent } from './components/auth/test/test.component';TestComponent
 
 @NgModule({
-  declarations: [AppComponent, AdminComponent, StoreComponent, TestComponent],
+  declarations: [AppComponent, AdminComponent, StoreComponent],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
+    FormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
