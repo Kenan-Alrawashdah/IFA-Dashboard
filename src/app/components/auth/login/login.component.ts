@@ -1,37 +1,41 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { NbAuthService, NbAuthSocialLink, NbLoginComponent } from '@nebular/auth';
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import {
+  NbAuthService,
+  NbAuthSocialLink,
+  NbLoginComponent,
+} from "@nebular/auth";
 
 @Component({
-  selector: 'ngx-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: "ngx-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.scss"],
 })
 export class LoginComponent extends NbLoginComponent {
-  protected service: NbAuthService;
-  protected options: {};
-  protected cd: ChangeDetectorRef;
-  protected router: Router;
-  redirectDelay: number;
-  showMessages: any;
-  strategy: string;
-  errors: string[];
-  messages: string[];
-  user: any;
-  submitted: boolean;
-  socialLinks: NbAuthSocialLink[];
+  loginForm: FormGroup;
   rememberMe: boolean;
 
-  login1(): void {
-
+  constructor() {
+    super();
   }
-  getConfigValue1(key: string): any{
 
-  };
-  // static ɵfac: ɵngcc0.ɵɵFactoryDeclaration<NbLoginComponent, never>;
-  // static ɵcmp: ɵngcc0.ɵɵComponentDeclaration<NbLoginComponent, "nb-login", never, {}, {}, never, never>;
-  
+  ngOnInit(): void {
+    this.loginForm = new FormGroup({
+      email: new FormControl("", [
+        Validators.required,
+        Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/),
+      ]),
+      password: new FormControl("", [
+        Validators.required,
+        Validators.pattern(/((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{8,64})/),
+      ]),
+    });
+  }
 
+  login1(): void {
+    console.log(this.loginForm.value);
+  }
 
-
+  getConfigValue1(key: string): any {}
 }

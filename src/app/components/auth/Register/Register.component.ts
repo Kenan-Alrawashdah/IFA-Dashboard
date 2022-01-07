@@ -85,7 +85,7 @@ export class RegisterComponent extends NbRegisterComponent implements OnInit {
       this.loading = false;
       this.stepperIndex = 1;
     }, 1500);
-    if (this.firstForm.get("email").value == null) {
+    if (this.firstForm.get("email").value != null) {
     }
   }
 
