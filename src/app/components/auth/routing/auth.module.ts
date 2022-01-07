@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from '../login/login.component';
-import { NbAlertModule, NbButtonModule, NbCheckboxModule, NbInputModule, NbStepperModule, NbCardModule } from '@nebular/theme';
+import { NbAlertModule, NbButtonModule, NbCheckboxModule, NbInputModule, NbStepperModule, NbCardModule, NbSpinnerModule } from '@nebular/theme';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NbAuthModule } from '@nebular/auth';
@@ -30,6 +30,7 @@ import { RegisterComponent } from '../Register/Register.component';
     NbAuthModule,
     NbStepperModule,
     ReactiveFormsModule,
+    NbSpinnerModule,
     NbCardModule
     //BrowserModule
   ]
