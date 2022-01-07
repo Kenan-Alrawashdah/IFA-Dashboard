@@ -8,8 +8,12 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
     children: [
           {
-            title: 'categories',
+            title: 'Categories',
             link: '/pages/Admin/categories',
+          },
+          {
+            title: 'Groups',
+            link: '/pages/Admin/groups',
           },
           {
             title: 'test',
