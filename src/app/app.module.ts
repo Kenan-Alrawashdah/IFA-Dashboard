@@ -29,7 +29,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { TestComponent } from './components/auth/test/test.component';TestComponent
 
 @NgModule({
-  declarations: [AppComponent, AdminComponent, StoreComponent],
+  declarations: [AppComponent, AdminComponent],
   imports: [
     BrowserModule,
     ReactiveFormsModule,

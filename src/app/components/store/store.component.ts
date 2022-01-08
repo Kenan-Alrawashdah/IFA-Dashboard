@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { NbDialogService } from '@nebular/theme';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 
 @Component({
   selector: 'ngx-store',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StoreComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dialogService: NbDialogService) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+  open(dialog: TemplateRef<any>) {
+    this.dialogService.open(dialog, {
+      context: "this is some additional data passed to dialog",
+    });
   }
-
 }
