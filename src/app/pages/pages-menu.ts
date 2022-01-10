@@ -19,8 +19,12 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/Store',
     children: [
           {
-            title: 'Store',
+            title: 'My Garments',
             link: '/pages/Store',
+          },
+          {
+            title: 'profile',
+            link: '/pages/Store/profile',
           }
         ],
   },
@@ -62,7 +66,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'home-outline',
     link: '/pages/iot-dashboard',
   },
-  
+
   {
     title: 'Layout',
     icon: 'layout-outline',
@@ -269,5 +273,5 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
     ],
   }
-  
+
 ];

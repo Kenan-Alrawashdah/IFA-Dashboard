@@ -23,6 +23,11 @@ export const routes: Routes = [
     loadChildren: () => import('./components/auth/routing/auth-routing.module')
     .then(m => m.AuthRoutingModule),
   },
+  {
+     path : 'store',
+     loadChildren: ()=>import('./components/store/routting/store-routing.module')
+     .then(m => m.StoreRoutingModule)
+  },
 
   { path: '', redirectTo: 'pages', pathMatch: 'full' },
   { path: '**', redirectTo: 'pages' },
