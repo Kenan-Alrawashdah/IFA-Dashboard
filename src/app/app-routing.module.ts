@@ -20,37 +20,15 @@ export const routes: Routes = [
   {
     path: 'auth',
     component: NbAuthComponent,
-    children: [
-      {
-        path: '',
-        component: LoginComponent,
-      },
-      {
-        path: 'login',
-        component: LoginComponent,
-      },
-      {
-        path: 'register',
-        component: NbRegisterComponent,
-      },
-      {
-        path: 'logout',
-        component: NbLogoutComponent,
-      },
-      {
-        path: 'request-password',
-        component: NbRequestPasswordComponent,
-      },
-      {
-        path: 'reset-password',
-        component: NbResetPasswordComponent,
-      },
-      {
-        path: 'test',
-        component: TestComponent,
-      },
-    ],
+    loadChildren: () => import('./components/auth/routing/auth-routing.module')
+    .then(m => m.AuthRoutingModule),
   },
+  {
+     path : 'store',
+     loadChildren: ()=>import('./components/store/routting/store-routing.module')
+     .then(m => m.StoreRoutingModule)
+  },
+
   { path: '', redirectTo: 'pages', pathMatch: 'full' },
   { path: '**', redirectTo: 'pages' },
 ];

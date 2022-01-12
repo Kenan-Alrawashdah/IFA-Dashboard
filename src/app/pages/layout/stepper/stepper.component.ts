@@ -30,6 +30,7 @@ export class StepperComponent implements OnInit {
   }
 
   onFirstSubmit() {
+    console.log("hhhhh");
     this.firstForm.markAsDirty();
   }
 

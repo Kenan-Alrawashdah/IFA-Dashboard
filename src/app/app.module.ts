@@ -1,3 +1,4 @@
+
 /**
  * @license
  * Copyright Akveo. All Rights Reserved.
@@ -22,6 +23,8 @@ import {
 } from '@nebular/theme';
 import { AdminComponent } from './components/admin/admin.component';
 import { StoreComponent } from './components/store/store.component';
+
+
 import { TestComponent } from './components/auth/test/test.component';
 import { authInterceptorProviders } from './services/auth.Interceptor';
 
@@ -29,6 +32,8 @@ import { authInterceptorProviders } from './services/auth.Interceptor';
   declarations: [AppComponent, AdminComponent, StoreComponent, TestComponent,   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
+    FormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
