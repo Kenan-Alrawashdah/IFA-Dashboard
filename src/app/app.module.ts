@@ -23,13 +23,13 @@ import {
 } from '@nebular/theme';
 import { AdminComponent } from './components/admin/admin.component';
 import { StoreComponent } from './components/store/store.component';
-import { LoginComponent } from './components/auth/login/login.component';
-import { NbAuthComponent } from '@nebular/auth';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { TestComponent } from './components/auth/test/test.component';TestComponent
+
+
+import { TestComponent } from './components/auth/test/test.component';
+import { authInterceptorProviders } from './services/auth.Interceptor';
 
 @NgModule({
-  declarations: [AppComponent, AdminComponent],
+  declarations: [AppComponent, AdminComponent, StoreComponent, TestComponent,   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
@@ -50,6 +50,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ThemeModule.forRoot()
   ],
   bootstrap: [AppComponent],
+  providers:[
+    authInterceptorProviders
+  ]
 })
 export class AppModule {
 }
