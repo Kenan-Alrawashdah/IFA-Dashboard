@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Constants } from '../Constants/constants';
 import { ApiResponse } from '../constants/api.response.model';
 import { UserToken } from '../constants/UserToken.model';
+import { AddStoreModel } from '../components/auth/models/addStore.model';
 
 const baseUrl = Constants.BaseURL;
 
@@ -39,7 +40,7 @@ export class AuthService {
     );
   }
 
-  register(){
-    
-  }
+  // register(model:AddStoreModel){
+  //   return this.http.post<ApiResponse>
+  // }
 }

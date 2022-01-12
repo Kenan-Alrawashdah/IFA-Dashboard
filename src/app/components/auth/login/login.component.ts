@@ -16,9 +16,7 @@ export class LoginComponent extends NbLoginComponent {
   loginForm: FormGroup;
   rememberMe: boolean;
 
-  constructor() {
-    super();
-  }
+
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
