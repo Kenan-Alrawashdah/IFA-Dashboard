@@ -1,8 +1,3 @@
-/**
- * @license
- * Copyright Akveo. All Rights Reserved.
- * Licensed under the MIT License. See License.txt in the project root for license information.
- */
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
@@ -20,13 +15,15 @@ import {
   NbToastrModule,
   NbWindowModule,
 } from '@nebular/theme';
-import { AdminComponent } from './components/admin/admin.component';
-import { StoreComponent } from './components/store/store.component';
+import { authInterceptorProviders } from './services/auth.Interceptor';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, AdminComponent, StoreComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
+    FormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
@@ -43,6 +40,9 @@ import { StoreComponent } from './components/store/store.component';
     ThemeModule.forRoot()
   ],
   bootstrap: [AppComponent],
+  providers:[
+    authInterceptorProviders
+  ]
 })
 export class AppModule {
 }

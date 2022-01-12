@@ -3,32 +3,41 @@ import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { TestComponent } from '../sub-components/test/test.component';
-import { FormsModule } from '@angular/forms';
-import { NbCardModule, NbUserModule, NbButtonModule, NbTabsetModule, NbActionsModule, NbRadioModule, NbSelectModule, NbListModule, NbIconModule } from '@nebular/theme';
-import { NgxEchartsModule } from 'ngx-echarts';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NbCardModule, NbUserModule, NbButtonModule, NbTabsetModule, NbActionsModule, NbRadioModule, NbSelectModule, NbListModule, NbIconModule, NbInputModule, NbTreeGridModule } from '@nebular/theme';
 import { ThemeModule } from '../../../@theme/theme.module';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { CategoryComponent } from '../sub-components/category/category.component';
+import { GroupComponent } from '../sub-components/group/group.component';
+import { MulitSelectComponent } from '../sub-components/group/mulit-select/mulit-select.component';
+import { PropertyComponent } from '../property/property.component';
+import { GroupSelectComponent } from '../property/group-select/group-select.component';
+import { AdminComponent } from '../admin.component';
 
 
 @NgModule({
   declarations: [
-    TestComponent
+    AdminComponent,
+    TestComponent,
+    CategoryComponent,
+    GroupComponent,
+    MulitSelectComponent,
+    PropertyComponent ,
+    GroupSelectComponent
+    
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     FormsModule,
-    ThemeModule,
+    ReactiveFormsModule,
     NbCardModule,
-    NbUserModule,
-    NbButtonModule,
-    NbTabsetModule,
-    NbActionsModule,
-    NbRadioModule,
-    NbSelectModule,
-    NbListModule,
+    NbTreeGridModule,
     NbIconModule,
-    NbButtonModule,
-    NgxEchartsModule,
+    NbInputModule,
+    ThemeModule,
+    Ng2SmartTableModule,
+    NbSelectModule
   ]
 })
 export class AdminModule { }

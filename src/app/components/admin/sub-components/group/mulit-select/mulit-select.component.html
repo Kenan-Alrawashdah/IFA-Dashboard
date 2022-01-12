@@ -1,0 +1,6 @@
+
+  
+      <nb-select style="width: 230px;" multiple [(ngModel)]="cell.newValue" placeholder="Multiple Select">
+        <nb-option *ngFor="let item of categories" [value]="item.id">{{item.name}}</nb-option>
+      </nb-select>
+   

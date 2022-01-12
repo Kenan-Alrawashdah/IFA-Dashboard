@@ -8,6 +8,8 @@ import {
   NbRequestPasswordComponent,
   NbResetPasswordComponent,
 } from '@nebular/auth';
+import { LoginComponent } from './components/auth/login/login.component';
+import { TestComponent } from './components/auth/test/test.component';
 
 export const routes: Routes = [
   {
@@ -18,33 +20,15 @@ export const routes: Routes = [
   {
     path: 'auth',
     component: NbAuthComponent,
-    children: [
-      {
-        path: '',
-        component: NbLoginComponent,
-      },
-      {
-        path: 'login',
-        component: NbLoginComponent,
-      },
-      {
-        path: 'register',
-        component: NbRegisterComponent,
-      },
-      {
-        path: 'logout',
-        component: NbLogoutComponent,
-      },
-      {
-        path: 'request-password',
-        component: NbRequestPasswordComponent,
-      },
-      {
-        path: 'reset-password',
-        component: NbResetPasswordComponent,
-      },
-    ],
+    loadChildren: () => import('./components/auth/routing/auth-routing.module')
+    .then(m => m.AuthRoutingModule),
   },
+  {
+     path : 'store',
+     loadChildren: ()=>import('./components/store/routting/store-routing.module')
+     .then(m => m.StoreRoutingModule)
+  },
+
   { path: '', redirectTo: 'pages', pathMatch: 'full' },
   { path: '**', redirectTo: 'pages' },
 ];

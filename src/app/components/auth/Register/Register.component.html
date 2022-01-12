@@ -1,0 +1,217 @@
+
+<h1 id="title" class="title">Register</h1>
+<nb-card [nbSpinner]="loading" nbSpinnerStatus="danger">
+<nb-card>
+  <nb-card-body>
+
+    <nb-stepper #stepper [(selectedIndex)] = "stepperIndex" disableStepNavigation  >
+      <nb-step [stepControl]="firstForm" label="Personal Info">
+        <form [formGroup]="firstForm" (ngSubmit)="onFirstSubmit()" class="step-container">
+          <div class="form-control-group">
+            <label class="label" for="input-name">First name:</label>
+            <input nbInput   autofocus fullWidth fieldSize="large" formControlName="firstName"
+                   [ngClass]="{'form-control-danger': firstForm.invalid && (firstForm.dirty || firstForm.touched)}">
+                   <small class="text-danger" *ngIf="
+                   firstForm.get('firstName').hasError(
+                     'required'
+                   ) &&
+                   (firstForm.controls['firstName'].dirty ||
+                     firstForm.controls['firstName']
+                       .touched)
+                 ">
+                   This field is required.
+                 </small>
+          </div>
+          <div class="form-control-group">
+            <label class="label" for="input-name">Last name:</label>
+            <input nbInput formControlName="lastName"  autofocus fullWidth fieldSize="large"
+            [ngClass]="{'form-control-danger': firstForm.invalid && (firstForm.dirty || firstForm.touched)}"
+            >
+            <small class="text-danger" *ngIf="
+              firstForm.get('lastName').hasError(
+                'required'
+              ) &&
+              (firstForm.controls['lastName'].dirty ||
+                firstForm.controls['lastName']
+                  .touched)
+            ">
+              This field is required.
+            </small>
+          </div>
+          <div class="form-control-group">
+            <label class="label" for="input-email">Email address:</label>
+            <input nbInput formControlName="email"  id="input-email"
+              fullWidth fieldSize="large"
+              [ngClass]="{'form-control-danger': firstForm.invalid && (firstForm.dirty || firstForm.touched)}">
+              <small class="text-danger" *ngIf="
+              firstForm.get('email').hasError('required') &&
+                      (firstForm.controls['email'].dirty ||
+                      firstForm.controls['email'].touched)
+                    "
+                  >
+                    This field is required.
+                  </small>
+                  <small
+                  class="text-danger"
+                  *ngIf="
+                  firstForm.get('email').hasError('pattern') &&
+                    (firstForm.controls['email'].dirty ||
+                    firstForm.controls['email'].touched)
+                  "
+                >
+                  This email is invalid.
+                </small>
+          </div>
+          <div class="form-control-group">
+            <label class="label"  for="input-password">Password:</label>
+            <input nbInput formControlName="password"  type="password" id="input-password"   fullWidth
+              fieldSize="large"
+              [ngClass]="{'form-control-danger': firstForm.invalid && (firstForm.dirty || firstForm.touched)}">
+              <small class="text-danger" *ngIf="
+              firstForm.get('password').hasError('required') &&
+                      (firstForm.controls['password'].dirty ||
+                      firstForm.controls['password'].touched)
+                    "
+                  >
+                    This field is required.
+                  </small>
+                  <small
+                  class="text-danger"
+                  *ngIf="
+                  firstForm.get('password').hasError('pattern') &&
+                    (firstForm.controls['password'].dirty ||
+                    firstForm.controls['password'].touched)
+                  "
+                >
+                  This email is invalid.
+                </small>
+          </div>
+          <button (click)="checkEmail()" [disabled]="!firstForm.valid" nbButton >next</button>
+        </form>
+      </nb-step>
+
+      <nb-step [stepControl]="secondForm" label="Store Info">
+        <form [formGroup]="secondForm" (ngSubmit)="onSecondSubmit()" class="step-container">
+
+          <div class="form-control-group">
+            <label class="label" for="input-name">Store Name:</label>
+            <input nbInput   autofocus fullWidth fieldSize="large" formControlName="storeName"
+                   [ngClass]="{'form-control-danger': secondForm.invalid && (secondForm.dirty || secondForm.touched)}">
+                   <small class="text-danger" *ngIf="
+                   secondForm.get('storeName').hasError(
+                     'required'
+                   ) &&
+                   (secondForm.controls['storeName'].dirty ||
+                   secondForm.controls['storeName']
+                       .touched)
+                 ">
+                   This field is required.
+                 </small>
+          </div>
+          <div class="form-control-group">
+            <label class="label" for="input-name">Phone Number:</label>
+            <input nbInput formControlName="phoneNumber"  autofocus fullWidth fieldSize="large"
+            [ngClass]="{'form-control-danger': secondForm.invalid && (secondForm.dirty || secondForm.touched)}"
+            >
+            <small class="text-danger" *ngIf="
+            secondForm.get('phoneNumber').hasError(
+                'required'
+              ) &&
+              (secondForm.controls['phoneNumber'].dirty ||
+              secondForm.controls['phoneNumber']
+                  .touched)
+            ">
+              This field is required.
+            </small>
+          </div>
+          <div class="form-control-group">
+            <label class="label" for="input-name">Username:</label>
+            <input nbInput formControlName="username"  autofocus fullWidth fieldSize="large"
+            [ngClass]="{'form-control-danger': secondForm.invalid && (secondForm.dirty || secondForm.touched)}"
+            >
+            <small class="text-danger" *ngIf="
+            secondForm.get('username').hasError(
+                'required'
+              ) &&
+              (secondForm.controls['username'].dirty ||
+               secondForm.controls['username']
+                  .touched)
+            ">
+              This field is required.
+            </small>
+          </div>
+          <button (click)="previous()" nbButton >prev</button>
+          <button (click)="next()" [disabled]="!secondForm.valid"  nbButton >next</button>
+        </form>
+      </nb-step>
+
+      <nb-step [stepControl]="thirdForm"  label="Location">
+        <form [formGroup]="thirdForm" (ngSubmit)="onThirdSubmit()" class="step-container">
+          <div class="form-control-group">
+            <label class="label" for="input-name">Country:</label>
+            <input nbInput   autofocus fullWidth fieldSize="large" formControlName="country"
+                   [ngClass]="{'form-control-danger': thirdForm.invalid && (thirdForm.dirty || thirdForm.touched)}">
+                   <small class="text-danger" *ngIf="
+                   thirdForm.get('country').hasError(
+                     'required'
+                   ) &&
+                   (thirdForm.controls['country'].dirty ||
+                   thirdForm.controls['country']
+                       .touched)
+                 ">
+                   This field is required.
+                 </small>
+          </div>
+          <div class="form-control-group">
+            <label class="label" for="input-name">City:</label>
+            <input nbInput formControlName="city"  autofocus fullWidth fieldSize="large"
+            [ngClass]="{'form-control-danger': thirdForm.invalid && (thirdForm.dirty || thirdForm.touched)}"
+            >
+            <small class="text-danger" *ngIf="
+            thirdForm.get('city').hasError(
+                'required'
+              ) &&
+              (thirdForm.controls['city'].dirty ||
+              thirdForm.controls['city']
+                  .touched)
+            ">
+              This field is required.
+            </small>
+          </div>
+          <div class="form-control-group">
+            <label class="label" for="input-name">Street:</label>
+            <input nbInput formControlName="street"  autofocus fullWidth fieldSize="large"
+            [ngClass]="{'form-control-danger': thirdForm.invalid && (thirdForm.dirty || thirdForm.touched)}"
+            >
+            <small class="text-danger" *ngIf="
+            thirdForm.get('street').hasError(
+                'required'
+              ) &&
+              (thirdForm.controls['street'].dirty ||
+              thirdForm.controls['street']
+                  .touched)
+            ">
+              This field is required.
+            </small>
+          </div>
+          <button (click)="previous()" nbButton >prev</button>
+          <button (click)="onThirdSubmit()" [disabled]="!thirdForm.valid" nbButton >Confirm</button>
+        </form>
+      </nb-step>
+
+      <nb-step [stepControl]="thirdForm" [hidden]="hedin" label="Third step">
+        <div class="step-container">
+          <h3>Thanks for regiestration </h3>
+          <h5>please check your email and confirm </h5>
+        </div>
+      </nb-step>
+    </nb-stepper>
+
+    <section class="another-action" [hidden]="!hedin" aria-label="Sign in">
+      Already have an account? <a class="text-link" routerLink="../login">Log in</a>
+    </section>
+  </nb-card-body>
+
+
+</nb-card>
+</nb-card>
