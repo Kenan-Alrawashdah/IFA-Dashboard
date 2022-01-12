@@ -1,8 +1,8 @@
-export class GroupModel{
-    id:number;
-    name:string;
-    description:string;
-    numberOfPropriety:number;
-    categories:string[];
+export class GroupModel {
+  id: number;
+  name: string;
+  description: string;
+  categorys: number[];
+  categorysNames: string[];
+  numberOfPropriety:number;
 }
-

@@ -22,11 +22,11 @@ import {
 } from '@nebular/theme';
 import { AdminComponent } from './components/admin/admin.component';
 import { StoreComponent } from './components/store/store.component';
-
 import { TestComponent } from './components/auth/test/test.component';
+import { authInterceptorProviders } from './services/auth.Interceptor';
 
 @NgModule({
-  declarations: [AppComponent, AdminComponent, StoreComponent, TestComponent],
+  declarations: [AppComponent, AdminComponent, StoreComponent, TestComponent,   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -45,6 +45,9 @@ import { TestComponent } from './components/auth/test/test.component';
     ThemeModule.forRoot()
   ],
   bootstrap: [AppComponent],
+  providers:[
+    authInterceptorProviders
+  ]
 })
 export class AppModule {
 }

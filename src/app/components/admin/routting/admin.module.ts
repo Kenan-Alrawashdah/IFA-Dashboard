@@ -9,7 +9,9 @@ import { ThemeModule } from '../../../@theme/theme.module';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { CategoryComponent } from '../sub-components/category/category.component';
 import { GroupComponent } from '../sub-components/group/group.component';
-import { GroupAddComponent } from '../sub-components/group-add/group-add.component';
+import { MulitSelectComponent } from '../sub-components/group/mulit-select/mulit-select.component';
+import { PropertyComponent } from '../property/property.component';
+import { GroupSelectComponent } from '../property/group-select/group-select.component';
 
 
 @NgModule({
@@ -17,7 +19,10 @@ import { GroupAddComponent } from '../sub-components/group-add/group-add.compone
     TestComponent,
     CategoryComponent,
     GroupComponent,
-    GroupAddComponent
+    MulitSelectComponent,
+    PropertyComponent ,
+    GroupSelectComponent
+    
   ],
   imports: [
     CommonModule,
@@ -30,6 +35,7 @@ import { GroupAddComponent } from '../sub-components/group-add/group-add.compone
     NbInputModule,
     ThemeModule,
     Ng2SmartTableModule,
+    NbSelectModule
   ]
 })
 export class AdminModule { }

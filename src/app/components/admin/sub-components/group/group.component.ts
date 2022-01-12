@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { NbDialogService } from '@nebular/theme';
-import { LocalDataSource } from 'ng2-smart-table';
-import { SmartTableData } from '../../../../@core/data/smart-table';
+import { NbDialogService, NbToastrService } from '@nebular/theme';
 import { CategoryModel } from '../../models/category.model';
 import { GroupModel } from '../../models/group.model';
-import { GroupAddComponent } from '../group-add/group-add.component';
+import { AdminService } from '../../services/admin.service';
+import { MulitSelectComponent } from './mulit-select/mulit-select.component';
 
 @Component({
   selector: 'ngx-group',
@@ -13,29 +12,45 @@ import { GroupAddComponent } from '../group-add/group-add.component';
 })
 export class GroupComponent implements OnInit {
 
-  names: string[] = [];
-  constructor(private dialogService: NbDialogService) {
-  }
+  allGroups:GroupModel[];
+  allCategories:CategoryModel[];
+  constructor(
+    private dialogService: NbDialogService,
+    private adminService:AdminService,
+    private toastrService: NbToastrService,
+    ) {}
 
   ngOnInit(): void {
+    this.adminService.GetAllGroups().subscribe(
+      (response)=>{
+        if(response.success == true)
+        {
+          this.allGroups = response.data
+        }else{
+          this.toastrService.danger('There is something error','Error',{duration:1500});
+        }
+      }
+    );
+    this.adminService.GetAllCategories().subscribe(
+      (response)=>{
+          this.allCategories = response
+      }
+    )
   }
-  openAdd() {
-    // debugger
-    this.dialogService.open(GroupAddComponent)
-      .onClose.subscribe()
-  }
+
   
     settings = {
     //  To disable add button
-      actions: {
-        add: false
-      },
-      // add: {
-      //   addButtonContent: '<i class="nb-plus"></i>',
-      //   createButtonContent: '<i class="nb-checkmark"></i>',
-      //   cancelButtonContent: '<i class="nb-close"></i>',
-      //   confirmCreate: true,
+      // actions: {
+      //   add: false
       // },
+      add: {
+        addButtonContent: '<i class="nb-plus"></i>',
+        createButtonContent: '<i class="nb-checkmark"></i>',
+        cancelButtonContent: '<i class="nb-close"></i>',
+        confirmCreate: true,
+        
+      },
       edit: {
         editButtonContent: '<i class="nb-edit"></i>',
         saveButtonContent: '<i class="nb-checkmark"></i>',
@@ -61,52 +76,80 @@ export class GroupComponent implements OnInit {
           editable: false,
           addable: false,
         },
-        categories: {
+        categorys: {
           title: 'categories',
-          type: 'string',
-          editor: {
-            type: 'list',
-            config: {
-              list: [
-              { value: 'Antonette', title: 'Antonette' }, 
-              { value: 'Bret', title: 'Bret' },
-              { value: '<b>Samantha</b>',title: 'Samantha'}]
+          type: 'list',
+          valuePrepareFunction: (cell, row) => { 
+            let categoriesNames = this.allCategories.filter(c=>row.categorys.includes(c.id))
+            let str :string = ''; 
+            categoriesNames.forEach((element, index, array) => {
+              if (index === (array.length -1)) {
+              str += element.name
+
+            }else{
+              str += element.name + ' , '
             }
-          }
+            }); 
+            return str;
+          },
+          editor: {
+            type: 'custom',
+            valuePrepareFunction: (cell, row) => row,
+            component: MulitSelectComponent,
+           },
         },
       },
     };
-  
-  
-    source2:GroupModel[] = [
-       { id : 1 , name : 'asdf',description : 'ddasfd',numberOfPropriety:10,categories :['asssd','12']},
-       { id : 1 , name : 'asdf',description : 'asfd',numberOfPropriety:10,categories :['asd','asd']},
-       { id : 1 , name : 'asdf',description : 'asfd',numberOfPropriety:10,categories :['asd','asd']},
-    ] 
-  
-   
-  
-    onDeleteConfirm(event):void {
-      if (window.confirm('Are you sure you want to delete?')) {
-        event.confirm.resolve(); 
+ 
+    onDeleteConfirm(event): void {
+      if (window.confirm("Are you sure you want to delete?")) {
+        this.adminService.DeleteGroup(event.data.id).subscribe(
+          (response)=>{
+            
+            if(response.success == true)
+            {
+              event.confirm.resolve();
+              this.toastrService.success('The group deleted successfully','Deleted',{duration:1500})
+            }else {
+              this.toastrService.danger('There is something error','Error',{duration:1500})
+              event.confirm.reject();
+            }
+          }
+        )
       } else {
         event.confirm.reject();
       }
     }
   
     onSaveConfirm(event):void {
-      // if (window.confirm('Are you sure you want to save?')) {
-      //   event.newData['name'] += ' + added in code'; 
-      //   event.confirm.resolve(event.newData);
-      // } else {
-      //   event.confirm.reject();
-      // }
-      console.log(event.newData)
-      event.confirm.resolve();
+      let numberOfProperity =event.newData.numberOfPropriety;
+      this.adminService.EditGroup(event.newData).subscribe(
+        (response)=>{
+          if(response.success == true)
+          {
+            this.toastrService.success('Group edited successfully','Edited',{duration:1500})
+            event.newData.numberOfPropriety = numberOfProperity;
+            event.confirm.resolve(event.newData);
+          }else{
+            this.toastrService.danger(response.errors,'Error',{duration:1500});
+          }
+        }
+      )
     }
   
     onCreateConfirm(event):void { 
-        event.confirm.resolve(event.newData);
+     event.newData.id = 0;
+      this.adminService.CreateGroup(event.newData).subscribe(
+        (response)=>{
+          if(response.success == true)
+          {
+            this.toastrService.success('Group created successfully','Created',{duration:1500})
+            event.confirm.resolve(response.data);
+          }else{
+            this.toastrService.danger(response.errors,'Error',{duration:1500});
+          }
+        }
+      )
     }
 
 }

@@ -14,6 +14,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
           {
             title: 'Groups',
             link: '/pages/Admin/groups',
+          }
+          ,
+          {
+            title: 'Property',
+            link: '/pages/Admin/property',
           },
           {
             title: 'test',
