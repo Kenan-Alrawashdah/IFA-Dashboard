@@ -1,8 +1,8 @@
 import { NbDialogService } from "@nebular/theme";
 import { Component, OnInit, TemplateRef } from "@angular/core";
-import { GetAllCategories } from "./module/get-all-categories.model";
-import { GetStoreItem } from "./module/get-store-item.model";
 import { StoreService } from "./services/store.service";
+import { Garment, TabModel } from "./module/tabs.model";
+import { AdminService } from "../admin/services/admin.service";
 
 @Component({
   selector: "ngx-store",
@@ -10,58 +10,20 @@ import { StoreService } from "./services/store.service";
   styleUrls: ["./store.component.scss"],
 })
 export class StoreComponent implements OnInit {
-  GetStoreItem: GetStoreItem[];
-  GetAllCategories: GetAllCategories[];
 
+  testTab:TabModel[] 
+  
   constructor(
     private dialogService: NbDialogService,
     private storeService: StoreService
   ) {}
-  cat3 = [];
-  cat = [
-    {
-      cat: "Frank",
-      id: 1,
-    },
-    {
-      cat: "Vic",
-      id: 2,
-    },
-  ];
-  cat1 = [
-    {
-      cat: "Frank",
-      id: 1,
-    },
-    {
-      cat: "Vic",
-      id: 2,
-    },
-    {
-      cat: "Vic",
-      id: 2,
-    },
-    {
-      cat: "Vic",
-      id: 2,
-    },
-  ];
-  cat2 = [
-    {
-      cat: "2ssdas",
-      id: 3,
-    },
-    {
-      cat: "asdasdas",
-      id: 4,
-    },
-  ];
+
   ngOnInit(): void {
-    this.storeService.GetAllCategories().subscribe((data) => {
-      if (data.success) {
-        this.GetAllCategories = data.data;
+    this.storeService.GetAllCategories().subscribe(
+      (response) => {
+       this.testTab = response
       }
-    });
+    );
   }
   open(dialog: TemplateRef<any>) {
     this.dialogService.open(dialog, {
@@ -69,19 +31,14 @@ export class StoreComponent implements OnInit {
     });
   }
   onEvento(e) {
-    this.storeService
-      .GetStoreItemByCategoryId(e.badgePosition)
-      .subscribe((data) => {
-        if (data.success) {
-          this.GetStoreItem = data.data;
+    let x =this.testTab.filter(t=>t.id == e.badgePosition)[0]
+    if(typeof x.garments  == 'undefined')
+    {
+      this.storeService.GetStoreItemByCategoryId(e.badgePosition).subscribe(
+        (response)=>{
+          x.garments = response.data;
         }
-      });
-    if (e.badgePosition == 1) {
-      this.cat3 = this.cat2;
-    } else if (e.badgePosition == 2) {
-      this.cat3 = this.cat1;
-    } else {
-      this.cat3 = this.cat3;
+      )
     }
   }
 }

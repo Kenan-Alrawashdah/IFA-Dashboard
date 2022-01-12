@@ -2,12 +2,12 @@
   <nb-card-body>
     <nb-tabset (changeTab)="onEvento($event)" #dd>
       <nb-tab
-        *ngFor="let item of cat"
-        [tabTitle]="item.cat"
+        *ngFor="let item of testTab"
+        [tabTitle]="item.name"
         [badgePosition]="item.id"
       >
         <div class="flex-container">
-          <nb-card *ngFor="let item of cat3" class="column-4" status="success">
+          <nb-card *ngFor="let item2 of item.garments" class="column-4" status="success">
             <nb-card-body class="no-padding">
               <nb-user
                 class="user"
