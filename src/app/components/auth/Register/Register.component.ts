@@ -6,7 +6,7 @@ import {
   FormControl,
 } from "@angular/forms";
 import { NbRegisterComponent } from "@nebular/auth";
-import { AddStore, Location } from "../models/addStore";
+import { AddStoreModel, Location } from "../models/addStore.model";
 
 @Component({
   selector: "ngx-test",
@@ -17,7 +17,7 @@ export class RegisterComponent extends NbRegisterComponent implements OnInit {
   firstForm: FormGroup;
   secondForm: FormGroup;
   thirdForm: FormGroup;
-  store: AddStore;
+  store: AddStoreModel;
   loading: boolean = false;
   stepperIndex: number = 0;
   hedin: boolean = true;
@@ -59,7 +59,7 @@ export class RegisterComponent extends NbRegisterComponent implements OnInit {
   }
 
   onThirdSubmit() {
-    this.store = new AddStore();
+    this.store = new AddStoreModel();
     this.store.firstName = this.firstForm.get("firstName").value;
     this.store.lastName = this.firstForm.get("lastName").value;
     this.store.email = this.firstForm.get("email").value;
@@ -75,6 +75,7 @@ export class RegisterComponent extends NbRegisterComponent implements OnInit {
       ),
     ];
     console.log(this.store);
+    
     this.hedin = false;
     this.stepperIndex = 3;
   }

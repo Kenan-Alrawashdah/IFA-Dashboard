@@ -12,10 +12,12 @@ import { GroupComponent } from '../sub-components/group/group.component';
 import { MulitSelectComponent } from '../sub-components/group/mulit-select/mulit-select.component';
 import { PropertyComponent } from '../property/property.component';
 import { GroupSelectComponent } from '../property/group-select/group-select.component';
+import { AdminComponent } from '../admin.component';
 
 
 @NgModule({
   declarations: [
+    AdminComponent,
     TestComponent,
     CategoryComponent,
     GroupComponent,
