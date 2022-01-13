@@ -1,21 +1,29 @@
-import { StoreComponent } from './../store.component';
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { StoreComponent } from "./../store.component";
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
 
-import { StoreRoutingModule } from './store-routing.module';
-import { FormsModule } from '@angular/forms';
-import { NbCardModule, NbUserModule, NbButtonModule, NbTabsetModule, NbActionsModule, NbRadioModule, NbSelectModule, NbListModule, NbIconModule } from '@nebular/theme';
-import { NgxEchartsModule } from 'ngx-echarts';
-import { ThemeModule } from '../../../@theme/theme.module';
-import { ProfileComponent } from '../sub-components/profile/profile.component';
-
+import { StoreRoutingModule } from "./store-routing.module";
+import { FormsModule } from "@angular/forms";
+import {
+  NbCardModule,
+  NbUserModule,
+  NbButtonModule,
+  NbTabsetModule,
+  NbActionsModule,
+  NbRadioModule,
+  NbSelectModule,
+  NbListModule,
+  NbIconModule,
+} from "@nebular/theme";
+import { NgxEchartsModule } from "ngx-echarts";
+import { ThemeModule } from "../../../@theme/theme.module";
+import { ProfileComponent } from "../sub-components/profile/profile.component";
+import { Ng2SmartTableModule } from "ng2-smart-table";
 
 @NgModule({
-  declarations: [
-    StoreComponent,
-    ProfileComponent
-  ],
+  declarations: [StoreComponent, ProfileComponent],
   imports: [
+    Ng2SmartTableModule,
     CommonModule,
     StoreRoutingModule,
     FormsModule,
@@ -31,6 +39,6 @@ import { ProfileComponent } from '../sub-components/profile/profile.component';
     NbIconModule,
     NbButtonModule,
     NgxEchartsModule,
-  ]
+  ],
 })
-export class StoreModule { }
+export class StoreModule {}
