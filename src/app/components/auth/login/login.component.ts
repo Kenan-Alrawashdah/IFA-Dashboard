@@ -6,6 +6,9 @@ import {
   NbAuthSocialLink,
   NbLoginComponent,
 } from "@nebular/auth";
+import { AuthService } from "../../../services/auth.service";
+import { HttpClient } from "@angular/common/http";
+import { TokenStorageService } from "../../../services/token.service";
 
 @Component({
   selector: "ngx-login",
@@ -15,6 +18,13 @@ import {
 export class LoginComponent extends NbLoginComponent {
   loginForm: FormGroup;
   rememberMe: boolean;
+
+ constructor(
+   private authService:AuthService,
+   private tokenService:TokenStorageService
+ ){
+   super(null,null,null,null)
+ }
 
 
 
@@ -32,7 +42,19 @@ export class LoginComponent extends NbLoginComponent {
   }
 
   login1(): void {
-    console.log(this.loginForm.value);
+    this.authService.login(this.loginForm.value.email,this.loginForm.value.password).
+    subscribe(
+      (response)=>{
+        this.tokenService.saveToken(response.data)
+        console.log(this.tokenService.getToken())
+        console.log(this.tokenService.getUser())
+      },
+      (errorResponse)=>{
+        console.log(errorResponse.error.errors[0])
+
+      }
+    )
+    //console.log(this.loginForm.value);
   }
 
   getConfigValue1(key: string): any {}

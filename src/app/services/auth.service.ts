@@ -19,13 +19,8 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   public login(email: string, password: string) {
-    const body = {
-      Email: email,
-      Password: password,
-    };
-    return this.http.post<ApiResponse<UserToken>>(
-      baseUrl + '/api/Login/SignIn',
-      body
+    return this.http.get<ApiResponse<string>>(
+      baseUrl + 'auth/login?userEmail='+email+'&password='+password
     );
   }
 
