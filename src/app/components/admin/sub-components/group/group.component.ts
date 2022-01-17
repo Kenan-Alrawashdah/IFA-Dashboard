@@ -33,7 +33,7 @@ export class GroupComponent implements OnInit {
     );
     this.adminService.GetAllCategories().subscribe(
       (response)=>{
-          this.allCategories = response
+          this.allCategories = response.data
       }
     )
   }

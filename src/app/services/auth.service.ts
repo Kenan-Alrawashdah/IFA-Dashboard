@@ -24,18 +24,19 @@ export class AuthService {
     );
   }
 
-  refreshToken(token: string, refreshToken: string) {
-    return this.http.post(
-      baseUrl   + '/Refresh',
-      {
-        accessToken: token,
-        refreshToken: refreshToken,
-      },
-      httpOptions
-    );
-  }
-
-  // register(model:AddStoreModel){
-  //   return this.http.post<ApiResponse>
+  // refreshToken(token: string, refreshToken: string) {
+  //   return this.http.post(
+  //     baseUrl   + '/Refresh',
+  //     {
+  //       accessToken: token,
+  //       refreshToken: refreshToken,
+  //     },
+  //     httpOptions
+  //   );
   // }
+
+  register(model:AddStoreModel){
+    return this.http.post<ApiResponse>(Constants.BaseURL+'',model)
+
+  }
 }

@@ -9,18 +9,17 @@ export class Garment{
    constructor(
      public id: number,
        public  name: string,
-       public  description: null,
+       public  description: string,
        public  brand: string,
        public  price: number,
        public  createdAt: Date,
        public  storeId: number,
        public  categoryId: number,
-       public  category: null,
-       public  colors: null,
+       public  colors: number[],
+       public  colorsOfId: number[],
        public  images: string[],
        public  properties: null,
-       public  sizes: null,
-       public  storeApiDto: null,
+       public  sizesOfId: number[],
    ){
 
    }

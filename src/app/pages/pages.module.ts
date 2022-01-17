@@ -21,6 +21,7 @@ import { AuthModule } from '../components/auth/routing/auth.module';
     MiscellaneousModule,
     AdminModule,
     StoreModule,
+    AuthModule
   ],
   declarations: [
     PagesComponent,

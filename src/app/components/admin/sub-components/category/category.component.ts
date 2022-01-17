@@ -20,7 +20,7 @@ export class CategoryComponent implements OnInit {
    await  this.adminServices.GetAllCategories().toPromise()
     .then(
       (response)=>{
-        this.allCategories= response
+        this.allCategories= response.data
       }
     )
   }

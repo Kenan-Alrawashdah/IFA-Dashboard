@@ -29,7 +29,7 @@ export class AdminService {
 
   public GetAllCategories()
   {
-    return this.http.get<CategoryModel[]>(this.baseUrl + 'category')
+    return this.http.get<ApiResponse<CategoryModel[]>>(this.baseUrl + 'category')
   }
 
   public DeleteCategory(id:number)

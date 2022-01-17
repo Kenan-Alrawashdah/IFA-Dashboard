@@ -1,4 +1,3 @@
-import { TestComponent } from '../test/test.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -15,7 +14,6 @@ import { RegisterComponent } from '../Register/Register.component';
 @NgModule({
   declarations: [
     LoginComponent,
-    TestComponent,
     RegisterComponent
   ],
   imports: [

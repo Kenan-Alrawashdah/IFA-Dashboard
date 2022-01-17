@@ -6,6 +6,7 @@ import {
   FormControl,
 } from "@angular/forms";
 import { NbRegisterComponent } from "@nebular/auth";
+import { AuthService } from "../../../services/auth.service";
 import { AddStoreModel, Location } from "../models/addStore.model";
 
 @Component({
@@ -21,6 +22,12 @@ export class RegisterComponent extends NbRegisterComponent implements OnInit {
   loading: boolean = false;
   stepperIndex: number = 0;
   hedin: boolean = true;
+
+  constructor(
+    private authService:AuthService 
+  ){
+    super(null,{},null,null)
+  }
 
   ngOnInit() {
     this.firstForm = new FormGroup({
@@ -74,6 +81,10 @@ export class RegisterComponent extends NbRegisterComponent implements OnInit {
         this.thirdForm.get("street").value
       ),
     ];
+
+    // this.authService.register().subscribe(
+
+    // )
     console.log(this.store);
     
     this.hedin = false;

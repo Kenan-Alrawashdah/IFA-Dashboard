@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ClaimsModel } from '../constants/claims.model';
+import { UserToken } from '../constants/UserToken.model';
 
 const TOKEN_KEY = 'auth-token';
 const REFRESHTOKEN_KEY = 'auth-refreshtoken';
@@ -45,8 +46,8 @@ export class TokenStorageService {
     window.localStorage.setItem(USER_KEY, claim);
   }
 
-  public getUser(): string {
-    const user = window.localStorage.getItem(USER_KEY);
+  public getUser(): UserToken {
+    let user = JSON.parse(window.localStorage.getItem(USER_KEY)) as UserToken
     if (user) {
       return user;
     }

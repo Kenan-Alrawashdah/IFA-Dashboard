@@ -18,10 +18,14 @@ import { TokenStorageService } from "../../../services/token.service";
 export class LoginComponent extends NbLoginComponent {
   loginForm: FormGroup;
   rememberMe: boolean;
+  error: string;
+  errorValidation:boolean; 
+ loading :boolean;
 
  constructor(
    private authService:AuthService,
-   private tokenService:TokenStorageService
+   private tokenService:TokenStorageService,
+   private router2:Router
  ){
    super(null,null,null,null)
  }
@@ -32,26 +36,36 @@ export class LoginComponent extends NbLoginComponent {
     this.loginForm = new FormGroup({
       email: new FormControl("", [
         Validators.required,
-        Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/),
+        // Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/),S
       ]),
       password: new FormControl("", [
-        Validators.required,
-        Validators.pattern(/((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{8,64})/),
+        Validators.required
       ]),
     });
   }
 
   login1(): void {
+    this.loading = true;
     this.authService.login(this.loginForm.value.email,this.loginForm.value.password).
     subscribe(
       (response)=>{
         this.tokenService.saveToken(response.data)
-        console.log(this.tokenService.getToken())
-        console.log(this.tokenService.getUser())
+        let role = this.tokenService.GetRole()
+        if(role == 'ShopOwner')
+        {
+          this.router2.navigate(['/pages/Store'])
+        }else if(role == 'Admin')
+        {
+          this.router2.navigate(['/Admin/categories'])
+        }else 
+        {
+          this.tokenService.signOut();
+        }
       },
       (errorResponse)=>{
-        console.log(errorResponse.error.errors[0])
-
+        this.error=errorResponse.error.errors[0]
+        this.loading = false;
+        this.errorValidation = true;
       }
     )
     //console.log(this.loginForm.value);

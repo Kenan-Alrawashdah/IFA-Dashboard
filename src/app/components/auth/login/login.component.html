@@ -1,10 +1,14 @@
+<div  [nbSpinner]="loading" nbSpinnerStatus="danger">
+
 <h1 id="title" class="title">Login</h1>
 <p class="sub-title">IFA</p>
 
 
 
 <form (ngSubmit)="login1()" [formGroup]="loginForm" aria-labelledby="title">
-
+  <small class="text-danger" *ngIf="errorValidation">
+    {{error}}
+  </small>
   <div class="form-control-group">
     <label class="label" for="input-email">Email address:</label>
     <input nbInput formControlName="email" fullWidth fieldSize="large" autofocus>
@@ -60,3 +64,4 @@
 <section class="another-action" aria-label="Register">
   Don't have an account? <a class="text-link" routerLink="../register">Register</a>
 </section>
+</div>

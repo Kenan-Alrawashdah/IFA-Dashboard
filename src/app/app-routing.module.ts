@@ -2,14 +2,7 @@ import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import {
   NbAuthComponent,
-  NbLoginComponent,
-  NbLogoutComponent,
-  NbRegisterComponent,
-  NbRequestPasswordComponent,
-  NbResetPasswordComponent,
 } from '@nebular/auth';
-import { LoginComponent } from './components/auth/login/login.component';
-import { TestComponent } from './components/auth/test/test.component';
 
 export const routes: Routes = [
   {
@@ -29,7 +22,7 @@ export const routes: Routes = [
      .then(m => m.StoreRoutingModule)
   },
 
-  { path: '', redirectTo: 'pages', pathMatch: 'full' },
+  { path: '', redirectTo: 'auth', pathMatch: 'full' },
   { path: '**', redirectTo: 'pages' },
 ];
 
