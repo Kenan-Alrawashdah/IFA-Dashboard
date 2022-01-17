@@ -18,7 +18,7 @@ export class Garment{
        public  colors: number[],
        public  colorsOfId: number[],
        public  images: string[],
-       public  properties: null,
+       public  properties: number[],
        public  sizesOfId: number[],
    ){
 

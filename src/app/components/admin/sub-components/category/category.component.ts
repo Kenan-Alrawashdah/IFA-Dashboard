@@ -107,7 +107,7 @@ export class CategoryComponent implements OnInit {
       (response)=>{
        if(response.data.id > 0)
        {
-        this.toastrService.success('The category created successfully','Edited',{duration:1500})
+        this.toastrService.success('The category created successfully','Created',{duration:1500})
         event.confirm.resolve(event.newData);
        }else{
         this.toastrService.danger('There is something error','Error',{duration:1500})

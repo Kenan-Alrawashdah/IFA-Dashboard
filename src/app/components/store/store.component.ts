@@ -63,6 +63,7 @@ export class StoreComponent implements OnInit {
           this.storeService.AddGarment(response).subscribe(
             (response) => {
               console.log(response);
+              this.testTab.find(t=>t.id == response.data.categoryId).garments.push(response.data)
             },
             (errorResponse) => {
               console.log(errorResponse);
@@ -86,6 +87,9 @@ export class StoreComponent implements OnInit {
           this.storeService.EditGarment(response).subscribe(
             (response) => {
               console.log(response);
+              // this.testTab.find(t=>{return t.garments.filter((g,index)=>g.id == response.data.id).length > 0}).garments.splice(index,1)
+              // this.testTab.find(t=>t.id == response.data.categoryId).garments.push(response.data)
+              this.ngOnInit();
             },
             (errorResponse) => {
               console.log(errorResponse);

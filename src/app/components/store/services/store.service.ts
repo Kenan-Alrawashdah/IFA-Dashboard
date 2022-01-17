@@ -8,7 +8,7 @@ import { PropertyModel } from "../../admin/models/property.model";
 import { ColorModel } from "../module/color.model";
 import { GarmentModel } from "../module/Garment.model";
 import { GroupModel } from "../module/GroupWithProperty.model";
-import { Profile } from "../module/profile";
+import { LocationModel, Profile } from "../module/profile";
 import { SizeModel } from "../module/size.model";
 import { Garment, TabModel } from "../module/tabs.model";
 
@@ -37,7 +37,7 @@ export class StoreService {
 
   public AddGarment(body:FormData)
   {
-    return this.http.post<ApiResponse<GarmentModel>>(Constants.BaseURL+'garment/CreateGarment',body)
+    return this.http.post<ApiResponse<Garment>>(Constants.BaseURL+'garment/CreateGarment',body)
   }
 
   public GetAllProperties()
@@ -73,4 +73,18 @@ export class StoreService {
   {
     return this.http.post<ApiResponse<string>>(Constants.BaseURL + 'store/AddPhoto',model);
   } 
+
+  //Location services
+  public AddLocation(model:LocationModel)
+  {
+    return this.http.post<ApiResponse<LocationModel>>(Constants.BaseURL + 'Location',model);
+  }
+  public EditLocation(model:LocationModel)
+  {
+    return this.http.put<ApiResponse<LocationModel>>(Constants.BaseURL + 'Location',model);
+  }
+  public DeleteLocation(id:number)
+  {
+    return this.http.delete<ApiResponse>(Constants.BaseURL + 'Location/'+id);
+  }
 }

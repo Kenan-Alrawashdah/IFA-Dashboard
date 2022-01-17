@@ -6,6 +6,7 @@
           <div class="card-body">
             <div class="d-flex flex-column align-items-center text-center">
             <!-- https://bootdey.com/img/Content/avatar/avatar7.png -->
+            <img onclick="document.getElementById('selectedFile').click();" src="https://cdn-icons.flaticon.com/png/512/4146/premium/4146794.png?token=exp=1642446019~hmac=c8a56bdd5802c59b86d859ede42077d2" width="40" height="40" >
               <img 
                 src={{imageHost}}{{profileInfo.stroePhoto}}
                 alt="Admin"
@@ -22,9 +23,7 @@
                  <input  (change)="onFileSelected($event)" type="file" id="selectedFile" style="display: none;" />
                  <input type="button" value="Edit" onclick="document.getElementById('selectedFile').click();" />
                 </div>
-              
             </div>
-
           </div>
         </div>
       </div>

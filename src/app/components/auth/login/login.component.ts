@@ -56,7 +56,7 @@ export class LoginComponent extends NbLoginComponent {
           this.router2.navigate(['/pages/Store'])
         }else if(role == 'Admin')
         {
-          this.router2.navigate(['/Admin/categories'])
+          this.router2.navigate(['/pages/Admin/categories'])
         }else 
         {
           this.tokenService.signOut();

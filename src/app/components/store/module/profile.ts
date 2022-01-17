@@ -7,10 +7,10 @@ export interface Profile {
   stroePhoto: string;
   rank:       number;
   username:   string;
-  locations:  Location[];
+  locations:  LocationModel[];
   createdAt:  Date;
 }
-export interface Location {
+export interface LocationModel {
   id:          number;
   country:     string;
   city:        string;
@@ -18,3 +18,5 @@ export interface Location {
   phoneNumber: string;
   storeId:     number;
 }
+
+

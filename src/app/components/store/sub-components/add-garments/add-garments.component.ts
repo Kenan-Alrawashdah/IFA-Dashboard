@@ -20,28 +20,28 @@ export class AddGarmentsComponent  {
   addGarmentForm:FormGroup;
   categories:CategoryModel[];
   colors:ColorModel[];
-  sizes: SizeModel[];
+  sizes: SizeModel[] = [];
   Groups:GroupModel [];
   url:any ; 
   sizeIds:number[]= [];
   CategoryId:number =0;
+  imageValidation: boolean = false ; 
+  propertyValidation:boolean = false;
+  sizesValidation:boolean = false;
+  categoryValidation:boolean = false;
   constructor(
     protected ref: NbDialogRef<AddGarmentsComponent>,
     public fb: FormBuilder,
     private storeService:StoreService)
    {
     this.categories = storeService.categories;
-   // this.properties = storeService.properties;
     this.colors = storeService.colors;
-
-
     this.addGarmentForm = this.fb.group({
       Name: ['',Validators.required],
       Description: [null,Validators.required],
       Brand: [null,Validators.required],
       Price: [null,Validators.required],
       Colors: [null,Validators.required],
-      Sizes: [null,Validators.required],
       Image: [null]
     })
   }
@@ -76,41 +76,63 @@ export class AddGarmentsComponent  {
 			//this.msg = "";
 			this.url = reader.result;
      }
-    console.log(this.url )
   }
 
   cancel() {
     this.ref.close();
   }
   submit() {
+    this.addGarmentForm
+    if(this.CategoryId == 0 )
+    {
+      this.categoryValidation = true;
+    }else{
+    if(this.imageFile == null)
+    {
+      this.imageValidation = true ; 
+    }else
+    {
+      if(this.sizeIds.length == 0 )
+      {
+        this.sizesValidation = true ; 
+      }else{
+
     let form:FormData = new FormData();
-    form.append('id','0')
-    form.append('name',this.addGarmentForm.value.Name)
-    form.append('description',this.addGarmentForm.value.Description)
-    form.append('brand',this.addGarmentForm.value.Brand)
-    form.append('price',this.addGarmentForm.value.Price)
-    form.append('categoryId',this.CategoryId.toString())
-    this.addGarmentForm.value.Colors.forEach(element => {
-      
-      form.append('colors',element)
-    });
     this.Groups.forEach(element => {
-     console.log(element.Property) 
       if(element.Property != null )
       {
         form.append('properties',element.Property.toString())
       }
-    }); 
-     this.sizes.forEach(element => {
-      form.append('sizes',element.id.toString())
     });
+    if(form.get('properties') == null)
+    {
+      this.propertyValidation = true;
+    }else{
+      form.append('id','0')
+      form.append('name',this.addGarmentForm.value.Name)
+      form.append('description',this.addGarmentForm.value.Description)
+      form.append('brand',this.addGarmentForm.value.Brand)
+      form.append('price',this.addGarmentForm.value.Price)
+      form.append('categoryId',this.CategoryId.toString())
+      this.addGarmentForm.value.Colors.forEach(element => {
+        
+        form.append('colors',element)
+      });
+  
+       this.sizes.forEach(element => {
+        form.append('sizes',element.id.toString())
+      });
+  
+     form.append('imagesFiles',this.imageFile,this.imageFile.name)
+     this.ref.close(form);
 
-   form.append('imagesFiles',this.imageFile,this.imageFile.name)
+    }
 
 
-   this.ref.close(form);
+
   }
+  }
+}
 
-
-
+}
 }
