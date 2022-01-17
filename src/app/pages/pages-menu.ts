@@ -30,9 +30,11 @@ export const Store: NbMenuItem[]=[
           {
             title: 'My Garments',
             link: '/pages/Store',
+            icon: 'home-outline',
           },
           {
             title: 'profile',
+            icon: 'home-outline',
             link: '/pages/Store/profile',
           }
 ];

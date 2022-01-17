@@ -8,6 +8,7 @@ import { PropertyModel } from "../../admin/models/property.model";
 import { ColorModel } from "../module/color.model";
 import { GarmentModel } from "../module/Garment.model";
 import { GroupModel } from "../module/GroupWithProperty.model";
+import { Profile } from "../module/profile";
 import { SizeModel } from "../module/size.model";
 import { Garment, TabModel } from "../module/tabs.model";
 
@@ -63,4 +64,13 @@ export class StoreService {
   {
     return this.http.get<ApiResponse<GroupModel[]>>(Constants.BaseURL+ 'group/GetGroupByCategory?id='+id)
   }
+
+  public Profile(){
+    return this.http.get<ApiResponse<Profile>>(Constants.BaseURL + 'store/Profile' );
+  }
+
+  public AddImage(model:FormData)
+  {
+    return this.http.post<ApiResponse<string>>(Constants.BaseURL + 'store/AddPhoto',model);
+  } 
 }

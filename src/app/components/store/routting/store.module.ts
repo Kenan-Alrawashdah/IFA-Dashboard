@@ -10,6 +10,7 @@ import { ThemeModule } from '../../../@theme/theme.module';
 import { ProfileComponent } from '../sub-components/profile/profile.component';
 import { AddGarmentsComponent } from '../sub-components/add-garments/add-garments.component';
 import { EditGarmentComponent } from '../sub-components/edit-garment/edit-garment.component';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { EditGarmentComponent } from '../sub-components/edit-garment/edit-garmen
     NbIconModule,
     NbButtonModule,
     NgxEchartsModule,
-    NbSpinnerModule
+    NbSpinnerModule,
+    Ng2SmartTableModule,
   ]
 })
 export class StoreModule { }

@@ -28,13 +28,13 @@ export class AuthInterceptor implements HttpInterceptor {
       authReq = this.addTokenHeader(req, token);
     }
 
-    return next.handle(authReq).pipe();
-    // .pipe(catchError(error => {
-    //   if (error instanceof HttpErrorResponse &&  error.status === 0) {
-    //     return this.handle401Error(authReq, next);
-    //   }
-    //     return throwError(error);
-    // }));
+    return next.handle(authReq)
+    .pipe(catchError(error => {
+      if (error instanceof HttpErrorResponse &&  error.status === 401) {
+        this.tokenService.signOut();
+      }
+        return throwError(error);
+    }));
   }
 
   // private handle401Error(request: HttpRequest<any>, next: HttpHandler) {
