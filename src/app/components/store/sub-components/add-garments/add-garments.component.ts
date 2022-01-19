@@ -21,7 +21,7 @@ export class AddGarmentsComponent  {
   categories:CategoryModel[];
   colors:ColorModel[];
   sizes: SizeModel[] = [];
-  Groups:GroupModel [];
+  Groups:GroupModel [] = [];
   url:any ; 
   sizeIds:number[]= [];
   CategoryId:number =0;
@@ -38,7 +38,7 @@ export class AddGarmentsComponent  {
     this.colors = storeService.colors;
     this.addGarmentForm = this.fb.group({
       Name: ['',Validators.required],
-      Description: [null,Validators.required],
+      Description: [null],
       Brand: [null,Validators.required],
       Price: [null,Validators.required],
       Colors: [null,Validators.required],
@@ -52,14 +52,14 @@ export class AddGarmentsComponent  {
   onCategorySelected(){
     this.loading = true; 
     this.sizeIds = [];
-    this.Groups = []; 
     this.storeService.GetSizeByCategoryId(this.CategoryId).subscribe(
       (response)=>{
         this.sizes = response.data
       }
-    )
-    this.storeService.GetGroups(this.CategoryId).subscribe(
-      (response)=>{
+      )
+      this.storeService.GetGroups(this.CategoryId).subscribe(
+        (response)=>{
+        this.Groups = []; 
         this.Groups = response.data
         this.loading = false; 
       }
@@ -119,8 +119,8 @@ export class AddGarmentsComponent  {
         form.append('colors',element)
       });
   
-       this.sizes.forEach(element => {
-        form.append('sizes',element.id.toString())
+       this.sizeIds.forEach(element => {
+        form.append('sizes',element.toString())
       });
   
      form.append('imagesFiles',this.imageFile,this.imageFile.name)

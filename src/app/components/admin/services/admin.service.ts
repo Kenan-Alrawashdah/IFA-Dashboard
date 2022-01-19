@@ -5,6 +5,7 @@ import { Constants } from '../../../constants/constants';
 import { CategoryModel } from '../models/category.model';
 import { GroupModel } from '../models/group.model';
 import { PropertyModel } from '../models/property.model';
+import { StoreModel } from '../models/store.model';
 
 @Injectable({
   providedIn: 'root'
@@ -79,6 +80,15 @@ export class AdminService {
   public DeleteProperty(id:number)
   {
     return this.http.delete<ApiResponse<number>>(this.baseUrl + 'property?id='+id)
+  }
+  // Store services 
+  public GetAllNotApprovedStores()
+  {
+    return this.http.get<ApiResponse<StoreModel[]>>(this.baseUrl + 'store/StoresNotApproved')
+  }
+  public GetAllApprovedStores()
+  {
+    return this.http.get<ApiResponse<StoreModel[]>>(this.baseUrl + 'store')
   }
 
   

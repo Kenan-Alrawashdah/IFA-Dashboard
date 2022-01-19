@@ -13,6 +13,8 @@ import { MulitSelectComponent } from '../sub-components/group/mulit-select/mulit
 import { PropertyComponent } from '../property/property.component';
 import { GroupSelectComponent } from '../property/group-select/group-select.component';
 import { AdminComponent } from '../admin.component';
+import { PendingStoresComponent } from '../sub-components/pending-stores/pending-stores.component';
+import { StoresComponent } from '../sub-components/stores/stores.component';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { AdminComponent } from '../admin.component';
     GroupComponent,
     MulitSelectComponent,
     PropertyComponent ,
-    GroupSelectComponent
+    GroupSelectComponent,
+    PendingStoresComponent,
+    StoresComponent
     
   ],
   imports: [
@@ -37,7 +41,8 @@ import { AdminComponent } from '../admin.component';
     NbInputModule,
     ThemeModule,
     Ng2SmartTableModule,
-    NbSelectModule
+    NbSelectModule,
+    
   ]
 })
 export class AdminModule { }

@@ -5,23 +5,33 @@ export const Admin: NbMenuItem[]=[
 
           {
             title: 'Categories',
-            icon: 'home-outline',
+            icon: 'list-outline',
             home: true,
             link: '/pages/Admin/categories',
           },
           {
             title: 'Groups',
+            icon: 'layers-outline',
             link: '/pages/Admin/groups',
           }
           ,
           {
             title: 'Property',
+            icon: 'credit-card-outline',
             link: '/pages/Admin/property',
           },
           {
-            title: 'test',
-            link: '/pages/Admin/test',
+            title: 'Stores ',
+            icon: 'shopping-cart-outline',
+            link: '/pages/Admin/Stores',
           },
+          {
+            title: 'Stores requests',
+            icon: 'shopping-bag-outline',
+            link: '/pages/Admin/PendingStores',
+          },
+    
+        
 
         ];
   
@@ -30,11 +40,11 @@ export const Store: NbMenuItem[]=[
           {
             title: 'My Garments',
             link: '/pages/Store',
-            icon: 'home-outline',
+            icon: 'list-outline',
           },
           {
             title: 'profile',
-            icon: 'home-outline',
+            icon: 'layers-outline',
             link: '/pages/Store/profile',
           }
 ];

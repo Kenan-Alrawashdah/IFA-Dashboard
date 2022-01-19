@@ -125,13 +125,11 @@
                   </small>
                 <small style="margin-left: 25px;color: rgb(0, 132, 255);" *ngIf="CategoryId == 0">Please select category first</small>
                 <div class="row">
-    
                     <div class="col-lg-6" *ngFor="let item of Groups" style="margin-top: 5px;" >
-                        <label class="form-label" for="f1">{{item.name}}</label>
-                        <nb-select  style="width: 80%;margin-left: 15px;" [(ngModel)]="item.Property" [ngModelOptions]="{standalone: true}" placeholder="Multiple Select">
+                        <label class="form-label" style="width: 67px;margin-top: 5px;" for="f1">{{item.name}}</label>
+                        <nb-select  style="width: 60%;margin-left: 15px;" [(ngModel)]="item.Property" [ngModelOptions]="{standalone: true}" placeholder="Multiple Select">
                             <nb-option *ngFor="let item2 of item.propertysInsidGroup" [value]="item2.id">{{item2.name}}</nb-option>
                         </nb-select>
-                       
                     </div>
                       
                     

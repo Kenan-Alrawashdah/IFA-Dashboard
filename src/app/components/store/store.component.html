@@ -13,8 +13,8 @@
       >
         <div class="flex-container">
           <nb-card *ngFor="let item2 of item.garments" class="column-4" status="success">
-            <nb-card-body class="no-padding">
-              <img src="{{imageHost}}{{item2.images[0]}}" class="img-size" /> 
+            <nb-card-body class="no-padding"  style="text-align: center;" >
+              <img src="{{imageHost}}{{item2.images[0]}}"class="img-size" /> 
             </nb-card-body>
             <nb-card-footer
               ><span style="font-weight: bold">{{item2.name}}</span> <br /><span

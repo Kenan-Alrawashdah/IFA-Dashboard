@@ -48,7 +48,7 @@ export class EditGarmentComponent  {
     this.colors = storeService.colors;
     this.addGarmentForm = this.fb.group({
       Name: [this.Garment.name,Validators.required],
-      Description: [this.Garment.description,Validators.required],
+      Description: [this.Garment.description],
       Brand: [this.Garment.brand,Validators.required],
       Price: [this.Garment.price,Validators.required],
       Colors: [this.Garment.colorsOfId,Validators.required]
@@ -61,16 +61,16 @@ export class EditGarmentComponent  {
   onCategorySelected(){
     this.loading = true; 
     this.sizeIds = [];
-    this.Groups = []; 
     this.storeService.GetSizeByCategoryId(this.CategoryId).subscribe(
       (response)=>{
         this.sizes = response.data
       }
-    )
-   
-  
-    this.storeService.GetGroups(this.CategoryId).subscribe(
-      (response)=>{
+      )
+      
+      
+      this.storeService.GetGroups(this.CategoryId).subscribe(
+        (response)=>{
+        this.Groups = []; 
         this.Groups = response.data
         if(this.flag)
         {
@@ -83,9 +83,6 @@ export class EditGarmentComponent  {
         this.loading = false; 
       }
     )
-
-  
-
   }
 
   onFileSelected(event){
