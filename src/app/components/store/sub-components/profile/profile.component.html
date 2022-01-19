@@ -5,12 +5,11 @@
         <div class="card">
           <div class="card-body">
             <div class="d-flex flex-column align-items-center text-center">
-            <!-- https://bootdey.com/img/Content/avatar/avatar7.png -->
-            <img onclick="document.getElementById('selectedFile').click();" src="https://cdn-icons.flaticon.com/png/512/4146/premium/4146794.png?token=exp=1642446019~hmac=c8a56bdd5802c59b86d859ede42077d2" width="40" height="40" >
-              <img 
-                src={{imageHost}}{{profileInfo.stroePhoto}}
+              <!-- https://bootdey.com/img/Content/avatar/avatar7.png -->
+              <img
+                src="{{ imageHost }}{{ profileInfo.stroePhoto }}"
                 alt="Admin"
-                width="300"
+                style="height: 275px; width: 95%"
               />
               <!-- <div class="mt-3">
                 <h4>John Doe</h4>
@@ -19,11 +18,33 @@
                   Bay Area, San Francisco, CA
                 </p>
               </div> -->
-              <div class="mt-5">
-                 <input  (change)="onFileSelected($event)" type="file" id="selectedFile" style="display: none;" />
-                 <input type="button" value="Edit" onclick="document.getElementById('selectedFile').click();" />
-                </div>
+              <div class="mt-1">
+                <input
+                  (change)="onFileSelected($event)"
+                  type="file"
+                  id="selectedFile"
+                  style="display: none"
+                />
+                <!-- <img
+                  
+                  src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                  width="40"
+                  height="40"
+                /> -->
+              </div>
             </div>
+            <i
+              class="far fa-image"
+              onclick="document.getElementById('selectedFile').click();"
+              style="
+                font-size: 40px;
+                opacity: 0.6;
+                cursor: pointer;
+                margin-left: 18px;
+                color: black;
+              "
+              title="Edit Store Photo"
+            ></i>
           </div>
         </div>
       </div>
@@ -32,38 +53,48 @@
           <div class="card-body">
             <div class="row">
               <div class="col-sm-3">
-                <h6 class="mb-0">Store Name</h6>
+                <h6 class="mb-0" style="color: black">Store Name</h6>
               </div>
-              <div class="col-sm-9 text-secondary">{{profileInfo.storeName}}</div>
+              <div class="col-sm-9 text-secondary">
+                {{ profileInfo.storeName }}
+              </div>
             </div>
             <hr />
             <div class="row">
               <div class="col-sm-3">
-                <h6 class="mb-0">First Name</h6>
+                <h6 class="mb-0" style="color: black">First Name</h6>
               </div>
-              <div class="col-sm-9 text-secondary">{{profileInfo.firstName}}</div>
+              <div class="col-sm-9 text-secondary">
+                {{ profileInfo.firstName }}
+              </div>
             </div>
             <hr />
             <div class="row">
               <div class="col-sm-3">
-                <h6 class="mb-0">Last Name</h6>
+                <h6 class="mb-0" style="color: black">Last Name</h6>
               </div>
-              <div class="col-sm-9 text-secondary">{{ profileInfo.lastName}}</div>
+              <div class="col-sm-9 text-secondary">
+                {{ profileInfo.lastName }}
+              </div>
             </div>
             <hr />
             <div class="row">
               <div class="col-sm-3">
-                <h6 class="mb-0">Email</h6>
+                <h6 class="mb-0" style="color: black">Email</h6>
               </div>
-              <div class="col-sm-9 text-secondary">{{profileInfo.lastName}}</div>
+              <div class="col-sm-9 text-secondary">
+                {{ profileInfo.email }}
+              </div>
             </div>
             <hr />
-            
+
             <div class="row">
               <div class="col-sm-3">
-                <h6 class="mb-0">Register at</h6>
+                <h6 class="mb-0" style="color: black">Register at</h6>
               </div>
-              <div class="col-sm-9 text-secondary">{{profileInfo.createdAt|date}}</div>
+              <div class="col-sm-9 text-secondary">
+                {{ profileInfo.createdAt | date }}
+              </div>
             </div>
             <hr />
             <div class="row">
@@ -113,7 +144,9 @@
         </div>
 
         <hr />
-        <button nbButton status="success" class="Edit" (click)="ref.close()">Edit</button>
+        <button nbButton status="success" class="Edit" (click)="ref.close()">
+          Edit
+        </button>
       </form>
     </nb-card-body>
   </nb-card>

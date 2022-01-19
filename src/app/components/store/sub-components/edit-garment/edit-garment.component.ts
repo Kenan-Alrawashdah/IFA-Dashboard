@@ -59,6 +59,7 @@ export class EditGarmentComponent  {
 
 
   onCategorySelected(){
+    document.getElementsByTagName("html")[0].style.overflow = "hidden";
     this.loading = true; 
     this.sizeIds = [];
     this.storeService.GetSizeByCategoryId(this.CategoryId).subscribe(
