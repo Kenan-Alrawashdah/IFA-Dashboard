@@ -7,7 +7,6 @@ import {
   NbLoginComponent,
 } from "@nebular/auth";
 import { AuthService } from "../../../services/auth.service";
-import { HttpClient } from "@angular/common/http";
 import { TokenStorageService } from "../../../services/token.service";
 
 @Component({
@@ -35,8 +34,7 @@ export class LoginComponent extends NbLoginComponent {
   ngOnInit(): void {
     this.loginForm = new FormGroup({
       email: new FormControl("", [
-        Validators.required,
-        // Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/),S
+        Validators.required
       ]),
       password: new FormControl("", [
         Validators.required
@@ -68,7 +66,6 @@ export class LoginComponent extends NbLoginComponent {
         this.errorValidation = true;
       }
     )
-    //console.log(this.loginForm.value);
   }
 
   getConfigValue1(key: string): any {}

@@ -108,22 +108,7 @@
                    This field is required.
                  </small>
           </div>
-          <div class="form-control-group">
-            <label class="label" for="input-name">Phone Number:</label>
-            <input nbInput formControlName="phoneNumber"  autofocus fullWidth fieldSize="large"
-            [ngClass]="{'form-control-danger': secondForm.invalid && (secondForm.dirty || secondForm.touched)}"
-            >
-            <small class="text-danger" *ngIf="
-            secondForm.get('phoneNumber').hasError(
-                'required'
-              ) &&
-              (secondForm.controls['phoneNumber'].dirty ||
-              secondForm.controls['phoneNumber']
-                  .touched)
-            ">
-              This field is required.
-            </small>
-          </div>
+        
           <div class="form-control-group">
             <label class="label" for="input-name">Username:</label>
             <input nbInput formControlName="username"  autofocus fullWidth fieldSize="large"
@@ -189,6 +174,22 @@
               ) &&
               (thirdForm.controls['street'].dirty ||
               thirdForm.controls['street']
+                  .touched)
+            ">
+              This field is required.
+            </small>
+          </div>
+          <div class="form-control-group">
+            <label class="label" for="input-name">Phone Number:</label>
+            <input nbInput formControlName="phoneNumber"  autofocus fullWidth fieldSize="large"
+            [ngClass]="{'form-control-danger': thirdForm.invalid && (thirdForm.dirty || thirdForm.touched)}"
+            >
+            <small class="text-danger" *ngIf="
+            thirdForm.get('phoneNumber').hasError(
+                'required'
+              ) &&
+              (thirdForm.controls['phoneNumber'].dirty ||
+              thirdForm.controls['phoneNumber']
                   .touched)
             ">
               This field is required.

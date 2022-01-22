@@ -31,7 +31,6 @@
   <div class="form-control-group">
     <span class="label-with-link">
       <label class="label" for="input-password">Password:</label>
-      <a class="forgot-password caption-2" routerLink="../request-password">Forgot Password?</a>
     </span>
     <input nbInput formControlName="password" fullWidth name="password" type="password">
     <small class="text-danger" *ngIf="
@@ -62,6 +61,6 @@
 
 
 <section class="another-action" aria-label="Register">
-  Don't have an account? <a class="text-link" routerLink="../register">Register</a>
+  Don't have an account? <a class="text-link" routerLink="/auth/register">Register</a>
 </section>
 </div>

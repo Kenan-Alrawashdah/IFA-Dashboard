@@ -58,21 +58,24 @@ export class StoresComponent implements OnInit {
 
   onDeleteConfirm(event): void {
     if (window.confirm("Are you sure you want to delete?")) {
-      this.adminServices.DeleteCategory(event.data.id).subscribe(
-        (response)=>{
-          if(response.success == true)
-          {
-            event.confirm.resolve();
-            this.toastrService.success('The category deleted successfully','Deleted',{duration:1500})
-          }   else {
-            this.toastrService.danger('There is something error','Error',{duration:1500})
-            event.confirm.reject();
-          }
+      this.adminServices
+        .DeleteStore(event.data.id)
+        .subscribe((response) => {
 
-        }
-      )
-    } else {
-      event.confirm.reject();
+          if (response.success == true) {
+            this.toastrService.success(
+              "The store deleted successfully",
+              "Deleted",
+              { duration: 1500 }
+            );
+            this.ngOnInit();
+          } else {
+            this.ngOnInit();
+            this.toastrService.danger("There is something error", "Error", {
+              duration: 1500,
+            });
+          }
+        });
     }
   }
 

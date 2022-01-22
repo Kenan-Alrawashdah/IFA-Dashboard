@@ -91,5 +91,15 @@ export class AdminService {
     return this.http.get<ApiResponse<StoreModel[]>>(this.baseUrl + 'store')
   }
 
+  public ApproveStore(id:number)
+  {
+    return this.http.put<ApiResponse>(this.baseUrl+'store/Approved/'+id,{})
+  }
+
+  public DeleteStore(id:number)
+  {
+    return this.http.delete<ApiResponse>(this.baseUrl+'store?storeId='+id)
+  }
+
   
 }

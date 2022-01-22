@@ -36,7 +36,15 @@ export class AuthService {
   // }
 
   register(model:AddStoreModel){
-    return this.http.post<ApiResponse>(Constants.BaseURL+'',model)
-
+    return this.http.post<ApiResponse>(Constants.BaseURL+'store',model)
   }
+
+  checkEmail(userEmail:string)
+  {
+    let form: FormData = new FormData();
+    form.append("userEmail", userEmail);
+    return this.http.post<ApiResponse>(Constants.BaseURL+'auth/CheckEmail',form)
+  }
+
+
 }

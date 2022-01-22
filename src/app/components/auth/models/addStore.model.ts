@@ -6,7 +6,6 @@ export class AddStoreModel {
   password:    string;
   birthDate:   Date;
   storeName:   string;
-  phoneNumber: string;
   username:    string;
   locations:   Location[];
   createdAt:   Date;
@@ -15,5 +14,5 @@ export class AddStoreModel {
 }
 
 export class Location {
-  constructor( private country: string, private city:string, private street:string ){}
+  constructor( private country: string, private city:string, private street:string,private phoneNumber: string ){}
 }
