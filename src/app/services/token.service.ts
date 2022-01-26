@@ -46,8 +46,8 @@ export class TokenStorageService {
     window.localStorage.setItem(USER_KEY, claim);
   }
 
-  public getUser(): UserToken {
-    let user = JSON.parse(window.localStorage.getItem(USER_KEY)) as UserToken
+  public getUser(): ClaimsModel {
+    let user = JSON.parse(window.localStorage.getItem(USER_KEY)) as ClaimsModel
     if (user) {
       return user;
     }

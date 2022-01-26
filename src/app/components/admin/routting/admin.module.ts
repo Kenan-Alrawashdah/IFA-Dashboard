@@ -11,11 +11,11 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { CategoryComponent } from '../sub-components/category/category.component';
 import { GroupComponent } from '../sub-components/group/group.component';
 import { MulitSelectComponent } from '../sub-components/group/mulit-select/mulit-select.component';
-import { PropertyComponent } from '../property/property.component';
-import { GroupSelectComponent } from '../property/group-select/group-select.component';
 import { AdminComponent } from '../admin.component';
 import { PendingStoresComponent } from '../sub-components/pending-stores/pending-stores.component';
 import { StoresComponent } from '../sub-components/stores/stores.component';
+import { PropertyComponent } from '../sub-components/property/property.component';
+import { GroupSelectComponent } from '../sub-components/property/group-select/group-select.component';
 
 
 @NgModule({

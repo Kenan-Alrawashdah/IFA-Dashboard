@@ -3,6 +3,9 @@ import { Component, OnInit, TemplateRef } from "@angular/core";
 import { NbDialogService, NbToastrService } from "@nebular/theme";
 import { Profile } from "../../module/profile";
 import { Constants } from "../../../../constants/constants";
+import { EditProfileComponent } from "../edit-profile/edit-profile.component";
+import { TokenStorageService } from "../../../../services/token.service";
+import { HeaderComponent } from "../../../../@theme/components/header/header.component";
 
 @Component({
   selector: "ngx-profile",
@@ -16,7 +19,9 @@ export class ProfileComponent implements OnInit {
   constructor(
     private dialogService: NbDialogService,
     private storeService: StoreService,
-    private toastrService: NbToastrService
+    private toastrService: NbToastrService,
+    private tokenService:TokenStorageService,
+    private headerComponent:HeaderComponent
   ) {}
 
   ngOnInit(): void {
@@ -150,32 +155,67 @@ export class ProfileComponent implements OnInit {
   }
 
   onCreateConfirm(event): void {
-    event.newData.numberOfGroups = 0;
-    this.storeService.AddLocation(event.newData).subscribe(
-      (response) => {
-        if (response.data.id > 0) {
-          this.toastrService.success(
-            "The location added successfully",
-            "Created",
-            { duration: 1500 }
-          );
-          event.confirm.resolve(event.newData);
-        } else {
-          this.toastrService.danger("There is something error", "Error", {
-            duration: 1500,
-          });
-          event.confirm.reject();
+    // event.newData.numberOfGroups = 0;
+
+    if(event.newData.street != '' && event.newData.phoneNumber != '' && event.newData.phoneNumber != '' && event.newData.country != '' && event.newData.city != '')
+    {
+      this.storeService.AddLocation(event.newData).subscribe(
+        (response) => {
+          if (response.data.id > 0) {
+            this.toastrService.success(
+              "The location added successfully",
+              "Created",
+              { duration: 1500 }
+            );
+            event.confirm.resolve(event.newData);
+          } else {
+            this.toastrService.danger("There is something error", "Error", {
+              duration: 1500,
+            });
+            event.confirm.reject();
+          }
+        },
+        (error) => {
+          console.log(error);
         }
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+      );
+    }else{
+      this.toastrService.danger("Please fill all fields", "Error", {
+        duration: 1500,
+      });
+    }
   }
 
-  open(dialog: TemplateRef<any>) {
-    this.dialogService.open(dialog, {
-      context: "this is some additional data passed to dialog",
-    });
+
+  
+  openEditProfile() {
+    this.storeService.profileInfo = this.profileInfo; 
+    this.dialogService
+      .open(EditProfileComponent)
+      .onClose.subscribe((response) => {
+        if(response != null)
+        {
+          this.storeService.EditProfile(response).subscribe(
+            (response2)=>{
+              this.toastrService.success(
+                "The Profile edited successfully",
+                "Edit",
+                { duration: 1500 }
+              );
+              this.ngOnInit();
+                let user = this.tokenService.getUser() ; 
+                user.FullName = response.firstName + ' ' + response.lastName ; 
+                let s = JSON.stringify(user); 
+                this.tokenService.saveUser(s);
+                this.headerComponent.ngOnInit();
+            },
+            (responseError)=>{
+              this.toastrService.danger("There is something error", "Error", {
+                duration: 1500,
+              });
+            }
+          )
+        }
+      });
   }
 }

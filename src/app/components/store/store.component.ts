@@ -8,8 +8,9 @@ import { CategoryModel } from "../admin/models/category.model";
 import { PropertyModel } from "../admin/models/property.model";
 import { ColorModel } from "./module/color.model";
 import { SizeModel } from "./module/size.model";
-import { Constants } from "../../Constants/constants";
+import { Constants } from "../../constants/constants";
 import { EditGarmentComponent } from "./sub-components/edit-garment/edit-garment.component";
+import { Profile } from "./module/profile";
 
 @Component({
   selector: "ngx-store",
@@ -22,7 +23,7 @@ export class StoreComponent implements OnInit {
 
   testTab: TabModel[];
   categories: CategoryModel[];
-//  properties: PropertyModel[];
+  //properties: PropertyModel[];
   colors: ColorModel[];
 
   constructor(
@@ -52,7 +53,6 @@ export class StoreComponent implements OnInit {
 
   openAdd() {
     this.storeService.categories = this.categories;
-    //this.storeService.properties = this.properties;
     this.storeService.colors = this.colors;
 
     this.dialogService

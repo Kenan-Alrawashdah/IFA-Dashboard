@@ -122,6 +122,8 @@ export class GroupComponent implements OnInit {
     }
   
     onSaveConfirm(event):void {
+    if(event.newData.name != '' && event.newData.categorys.length != 0)
+    {
       let numberOfProperity =event.newData.numberOfPropriety;
       this.adminService.EditGroup(event.newData).subscribe(
         (response)=>{
@@ -133,8 +135,17 @@ export class GroupComponent implements OnInit {
           }else{
             this.toastrService.danger(response.errors,'Error',{duration:1500});
           }
+        },
+        (responseError)=>{
+          console.log(responseError)
         }
       )
+    }else
+      {
+        this.toastrService.danger("Please fill all fields", "Error", {
+          duration: 1500,
+        });
+      }
     }
   
     onCreateConfirm(event):void { 

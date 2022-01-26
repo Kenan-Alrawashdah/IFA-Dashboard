@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Constants } from '../Constants/constants';
-import { ApiResponse } from '../constants/api.response.model';
-import { UserToken } from '../constants/UserToken.model';
+
 import { AddStoreModel } from '../components/auth/models/addStore.model';
+import { Constants } from '../constants/constants';
+import { ApiResponse } from '../constants/api.response.model';
 
 const baseUrl = Constants.BaseURL;
 
