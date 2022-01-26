@@ -1,3 +1,4 @@
+import { UserModel } from './../models/user.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ApiResponse } from '../../../constants/api.response.model';
@@ -37,11 +38,19 @@ export class AdminService {
   {
     return this.http.delete<ApiResponse<number>>(this.baseUrl + 'category?id='+id)
   }
-
+  public DeleteUser(id:number)
+  {
+    return this.http.delete<ApiResponse<number>>(this.baseUrl + 'user?id='+id)
+  }
   //Group services
   public GetAllGroups()
   {
     return this.http.get<ApiResponse<GroupModel[]>>(this.baseUrl + 'group')
+  }
+
+  public GetAllUsers()
+  {
+    return this.http.get<ApiResponse<UserModel[]>>(this.baseUrl + 'user')
   }
 
   public CreateGroup(model:GroupModel)
@@ -81,7 +90,7 @@ export class AdminService {
   {
     return this.http.delete<ApiResponse<number>>(this.baseUrl + 'property?id='+id)
   }
-  // Store services 
+  // Store services
   public GetAllNotApprovedStores()
   {
     return this.http.get<ApiResponse<StoreModel[]>>(this.baseUrl + 'store/StoresNotApproved')
@@ -101,5 +110,5 @@ export class AdminService {
     return this.http.delete<ApiResponse>(this.baseUrl+'store?storeId='+id)
   }
 
-  
+
 }

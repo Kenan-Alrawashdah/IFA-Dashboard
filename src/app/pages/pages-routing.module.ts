@@ -85,7 +85,7 @@ const routes: Routes = [{
     //   loadChildren: () => import('./miscellaneous/miscellaneous.module')
     //     .then(m => m.MiscellaneousModule),
     // },
-    
+
     // {
     //   path: '',
     //   redirectTo: 'Admin',

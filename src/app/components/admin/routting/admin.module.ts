@@ -1,3 +1,4 @@
+import { UserComponent } from './../sub-components/user/user.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -27,8 +28,8 @@ import { GroupSelectComponent } from '../sub-components/property/group-select/gr
     PropertyComponent ,
     GroupSelectComponent,
     PendingStoresComponent,
-    StoresComponent
-    
+    StoresComponent,
+    UserComponent
   ],
   imports: [
     CommonModule,
@@ -42,7 +43,7 @@ import { GroupSelectComponent } from '../sub-components/property/group-select/gr
     ThemeModule,
     Ng2SmartTableModule,
     NbSelectModule,
-    
+
   ]
 })
 export class AdminModule { }
