@@ -1,3 +1,4 @@
+import { UserModel } from './../components/admin/models/user.model';
 import { NbMenuItem } from '@nebular/theme';
 
 
@@ -30,11 +31,16 @@ export const Admin: NbMenuItem[]=[
             icon: 'shopping-bag-outline',
             link: '/pages/Admin/PendingStores',
           },
-    
-        
+          {
+            title: 'User',
+            icon: 'person-outline',
+            link: '/pages/Admin/Users',
+          },
+
+
 
         ];
-  
+
 
 export const Store: NbMenuItem[]=[
           {

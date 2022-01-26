@@ -1,3 +1,4 @@
+import { UserComponent } from './../sub-components/user/user.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PropertyComponent } from '../property/property.component';
@@ -36,6 +37,10 @@ const routes: Routes = [
   {
     path:'test',
     component:TestComponent
+  },
+  {
+    path:'Users',
+    component:UserComponent
   }
 
 ];
