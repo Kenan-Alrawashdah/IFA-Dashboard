@@ -1,0 +1,84 @@
+=
+    <nb-card style="width: 550px;">
+      <nb-card-header>Edit Profile</nb-card-header>
+      <nb-card-body>
+        <div class="row">
+          <div class="col-12">
+            <form [formGroup]="EditProfileForm">
+              <!-- Name -->
+              <div class="row">
+                <div class="col-12">
+                  <div class="mb-4">
+                    <label class="form-label" for="f1">Store Name</label>
+                    <input
+                      type="text"
+                      formControlName="storeName"
+                      required="" class="form-control"/>
+                    <small
+                      class="text-danger"
+                      *ngIf="EditProfileForm.get('storeName').hasError('required') &&
+                        (EditProfileForm.controls['storeName'].dirty ||
+                        EditProfileForm.controls['storeName'].touched)">
+                      This field is required.
+                    </small>
+                  </div>
+                </div>
+              </div>
+              <!-- First Name -->
+              <div class="row">
+                <div class="col-12">
+                  <div class="mb-4">
+                    <label class="form-label" for="f1">First Name</label>
+                    <input
+                      type="text"
+                      formControlName="firstName"
+                      required=""
+                      class="form-control"/>
+                  </div>
+                </div>
+              </div>
+              <!-- Last Name -->
+              <div class="row">
+                <div class="col-12">
+                  <div class="mb-4">
+                    <label class="form-label" for="f1">Last Name</label>
+                    <input
+                      type="text"
+                      formControlName="lastName"
+                      required=""
+                      class="form-control"
+                    />
+                    <small
+                      class="text-danger"
+                      *ngIf="
+                      EditProfileForm.get('lastName').hasError('required') &&
+                        (EditProfileForm.controls['lastName'].dirty ||
+                        EditProfileForm.controls['lastName'].touched)
+                      "> This field is required.
+                    </small>
+                  </div>
+                </div>
+            </div>
+            
+              <hr />
+              <button
+                nbButton
+                status="success"
+                [disabled]="!EditProfileForm.valid"
+                (click)="submit()"
+              >
+                Edit
+              </button>
+              <button
+                style="margin-left: 25px"
+                nbButton
+                status="danger"
+                (click)="cancel()">
+                Close
+              </button>
+            </form>
+          </div>
+       
+        </div>
+      </nb-card-body>
+    </nb-card>

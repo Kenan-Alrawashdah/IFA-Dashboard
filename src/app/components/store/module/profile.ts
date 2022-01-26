@@ -3,6 +3,7 @@ export interface Profile {
   firstName:  string;
   lastName:   string;
   email:      string;
+  password:string;
   storeName:  string;
   stroePhoto: string;
   rank:       number;

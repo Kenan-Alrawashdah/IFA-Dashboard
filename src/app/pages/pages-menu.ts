@@ -13,8 +13,7 @@ export const Admin: NbMenuItem[]=[
             title: 'Groups',
             icon: 'layers-outline',
             link: '/pages/Admin/groups',
-          }
-          ,
+          },
           {
             title: 'Property',
             icon: 'credit-card-outline',
@@ -30,9 +29,6 @@ export const Admin: NbMenuItem[]=[
             icon: 'shopping-bag-outline',
             link: '/pages/Admin/PendingStores',
           },
-    
-        
-
         ];
   
 

@@ -11,6 +11,7 @@ import { ProfileComponent } from '../sub-components/profile/profile.component';
 import { AddGarmentsComponent } from '../sub-components/add-garments/add-garments.component';
 import { EditGarmentComponent } from '../sub-components/edit-garment/edit-garment.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { EditProfileComponent } from '../sub-components/edit-profile/edit-profile.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
     StoreComponent,
     ProfileComponent,
     AddGarmentsComponent,
-    EditGarmentComponent
+    EditGarmentComponent,
+    EditProfileComponent
   ],
   imports: [
     CommonModule,

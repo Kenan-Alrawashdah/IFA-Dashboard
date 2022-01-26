@@ -83,6 +83,8 @@ export class CategoryComponent implements OnInit {
   }
 
   onSaveConfirm(event): void {
+    if(event.newData.name != '' && event.newData.description !=  '') 
+    {
     if (window.confirm('Are you sure you want to save?')) {
       this.adminServices.EditCategory(event.newData).subscribe(
         (response)=>{
@@ -99,9 +101,17 @@ export class CategoryComponent implements OnInit {
     } else {
       event.confirm.reject();
     }
+  }else
+  {
+    this.toastrService.danger("Please fill all fields", "Error", {
+      duration: 1500,
+    });
+  }
   }
 
   onCreateConfirm(event): void {
+    if(event.newData.name !=  '' && event.newData.description !=  '' )
+    {
     event.newData.numberOfGroups = 0 ;
     this.adminServices.CreateCategory(event.newData).subscribe(
       (response)=>{
@@ -118,5 +128,12 @@ export class CategoryComponent implements OnInit {
         console.log(error);
       }
     )
+  }else
+  {
+    this.toastrService.danger("Please fill all fields", "Error", {
+      duration: 1500,
+    });
   }
+  }
+
 }

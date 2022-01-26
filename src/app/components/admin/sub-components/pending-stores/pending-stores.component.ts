@@ -60,7 +60,6 @@ export class PendingStoresComponent implements OnInit {
   };
 
   onCustomAction(event): void {
-    console.log(event.action);
     if (event.action == "accept") {
       if (window.confirm("Are you sure you want to accept ?")) {
         this.adminServices.ApproveStore(event.data.id).subscribe((response) => {
@@ -85,7 +84,6 @@ export class PendingStoresComponent implements OnInit {
         this.adminServices
           .DeleteStore(event.data.id)
           .subscribe((response) => {
-
             if (response.success == true) {
               this.toastrService.success(
                 "The store deleted successfully",

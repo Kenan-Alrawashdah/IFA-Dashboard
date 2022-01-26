@@ -27,18 +27,22 @@
                 /> -->
               </div>
             </div>
+            <a
+            onclick="document.getElementById('selectedFile').click();"
+            >
             <i
-              class="far fa-image"
-              onclick="document.getElementById('selectedFile').click();"
-              style="
-                font-size: 40px;
-                opacity: 0.6;
-                cursor: pointer;
-                margin-left: 18px;
-                color: black;
-              "
-              title="Edit Store Photo"
-            ></i>
+            class="fa fa-edit"
+            style="
+              font-size: 20px;
+              opacity: 0.6;
+              cursor: pointer;
+              margin-left: 18px;
+              color: black;
+            "
+            title="Edit Store Photo"
+          ></i>Edit Image
+            </a>
+            
           </div>
         </div>
       </div>
@@ -46,54 +50,54 @@
         <div class="card mb-3">
           <div class="card-body">
             <div class="row">
-              <div class="col-sm-3">
+              <div class="col-4">
                 <h6 class="mb-0" style="color: black">Store Name</h6>
               </div>
-              <div class="col-sm-9 text-secondary">
+              <div class="col-8 text-secondary">
                 {{ profileInfo.storeName }}
               </div>
             </div>
             <hr />
             <div class="row">
-              <div class="col-sm-3">
+              <div class="col-4">
                 <h6 class="mb-0" style="color: black">First Name</h6>
               </div>
-              <div class="col-sm-9 text-secondary">
+              <div class="col-8   text-secondary">
                 {{ profileInfo.firstName }}
               </div>
             </div>
             <hr />
             <div class="row">
-              <div class="col-sm-3">
+              <div class="col-4">
                 <h6 class="mb-0" style="color: black">Last Name</h6>
               </div>
-              <div class="col-sm-9 text-secondary">
+              <div class="col-8 text-secondary">
                 {{ profileInfo.lastName }}
               </div>
             </div>
             <hr />
             <div class="row">
-              <div class="col-sm-3">
+              <div class="col-4">
                 <h6 class="mb-0" style="color: black">Email</h6>
               </div>
-              <div class="col-sm-9 text-secondary">
+              <div class="col-8 text-secondary">
                 {{ profileInfo.email }}
               </div>
             </div>
             <hr />
 
             <div class="row">
-              <div class="col-sm-3">
+              <div class="col-4">
                 <h6 class="mb-0" style="color: black">Register at</h6>
               </div>
-              <div class="col-sm-9 text-secondary">
+              <div class="col-8 text-secondary">
                 {{ profileInfo.createdAt | date }}
               </div>
             </div>
             <hr />
             <div class="row">
-              <div class="col-sm-12">
-                <a class="btn btn-info" (click)="open(edit)">Edit</a>
+              <div class="col-12">
+                <a class="Edit btn btn-info" (click)="openEditProfile()">Edit</a>
               </div>
             </div>
           </div>

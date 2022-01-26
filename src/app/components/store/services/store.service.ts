@@ -22,6 +22,7 @@ export class StoreService {
   properties:PropertyModel[];
   colors:ColorModel[];
   garment:Garment;
+  profileInfo: Profile;
   constructor(private http: HttpClient) {}
   GatTabs() {
     return this.http.get<ApiResponse<TabModel[]>>(Constants.BaseURL +'category');
@@ -86,5 +87,14 @@ export class StoreService {
   public DeleteLocation(id:number)
   {
     return this.http.delete<ApiResponse>(Constants.BaseURL + 'Location/'+id);
+  }
+
+  public EditProfile(model:Profile)
+  {
+    model.email = '0';
+    model.password = '0'; 
+    model.username = '0';
+    // model.source = '0'
+    return this.http.put<ApiResponse>(Constants.BaseURL + 'store', model)
   }
 }

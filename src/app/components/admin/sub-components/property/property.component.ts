@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NbToastrService } from '@nebular/theme';
-import { GroupModel } from '../models/group.model';
-import { PropertyModel } from '../models/property.model';
-import { AdminService } from '../services/admin.service';
+import { GroupModel } from '../../models/group.model';
+import { PropertyModel } from '../../models/property.model';
+import { AdminService } from '../../services/admin.service';
 import { GroupSelectComponent } from './group-select/group-select.component';
 
 @Component({
@@ -98,6 +98,10 @@ export class PropertyComponent implements OnInit {
 
   onSaveConfirm(event): void {
     event.newData.group = '' ;
+    if(event.newData.groupId != '' && event.newData.name != '')
+    {
+
+    
     if (window.confirm('Are you sure you want to save?')) {
       this.adminServices.EditProperty(event.newData).subscribe(
         (response)=>{
@@ -105,15 +109,20 @@ export class PropertyComponent implements OnInit {
           {
             this.toastrService.success('The property edited successfully','Edited',{duration:1500})
             event.confirm.resolve(event.newData);
-          }else{
-            this.toastrService.danger('There is something error','Error',{duration:1500})
-            event.confirm.reject();
           }
+        },(responseError)=>{
+          this.toastrService.danger('There is something error','Error',{duration:1500})
+          event.confirm.reject();
         }
       )
     } else {
       event.confirm.reject();
     }
+  }else{
+    this.toastrService.danger("Please fill all fields", "Error", {
+      duration: 1500,
+    });
+  }
   }
 
   onCreateConfirm(event): void {
