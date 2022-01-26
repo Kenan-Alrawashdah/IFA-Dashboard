@@ -20,7 +20,7 @@ export class CategoryComponent implements OnInit {
    await  this.adminServices.GetAllCategories().toPromise()
     .then(
       (response)=>{
-        this.allCategories= response
+        this.allCategories= response.data
       }
     )
   }
@@ -83,6 +83,8 @@ export class CategoryComponent implements OnInit {
   }
 
   onSaveConfirm(event): void {
+    if(event.newData.name != '' && event.newData.description !=  '') 
+    {
     if (window.confirm('Are you sure you want to save?')) {
       this.adminServices.EditCategory(event.newData).subscribe(
         (response)=>{
@@ -99,15 +101,23 @@ export class CategoryComponent implements OnInit {
     } else {
       event.confirm.reject();
     }
+  }else
+  {
+    this.toastrService.danger("Please fill all fields", "Error", {
+      duration: 1500,
+    });
+  }
   }
 
   onCreateConfirm(event): void {
+    if(event.newData.name !=  '' && event.newData.description !=  '' )
+    {
     event.newData.numberOfGroups = 0 ;
     this.adminServices.CreateCategory(event.newData).subscribe(
       (response)=>{
        if(response.data.id > 0)
        {
-        this.toastrService.success('The category created successfully','Edited',{duration:1500})
+        this.toastrService.success('The category created successfully','Created',{duration:1500})
         event.confirm.resolve(event.newData);
        }else{
         this.toastrService.danger('There is something error','Error',{duration:1500})
@@ -118,5 +128,12 @@ export class CategoryComponent implements OnInit {
         console.log(error);
       }
     )
+  }else
+  {
+    this.toastrService.danger("Please fill all fields", "Error", {
+      duration: 1500,
+    });
   }
+  }
+
 }

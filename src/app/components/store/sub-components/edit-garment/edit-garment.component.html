@@ -1,0 +1,263 @@
+<div [nbSpinner]="loading" nbSpinnerStatus="danger">
+  <nb-card style="width: 1350px; height: 90vh">
+    <nb-card-header>Edit Garment</nb-card-header>
+    <nb-card-body>
+      <div class="row">
+        <div class="col-8">
+          <form [formGroup]="addGarmentForm">
+            <!-- Name -->
+            <div class="row">
+              <div class="col-12">
+                <div class="mb-4">
+                  <label class="form-label" for="f1">Name</label>
+                  <input
+                    type="text"
+                    formControlName="Name"
+                    required=""
+                    class="form-control"
+                  />
+                  <small
+                    class="text-danger"
+                    *ngIf="
+                      addGarmentForm.get('Name').hasError('required') &&
+                      (addGarmentForm.controls['Name'].dirty ||
+                        addGarmentForm.controls['Name'].touched)
+                    "
+                  >
+                    This field is required.
+                  </small>
+                </div>
+              </div>
+            </div>
+            <!-- Description -->
+            <div class="row">
+              <div class="col-12">
+                <div class="mb-4">
+                  <label class="form-label" for="f1">Description</label>
+                  <textarea
+                    type="text"
+                    formControlName="Description"
+                    required=""
+                    class="form-control"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+            <!-- Brand -->
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="mb-4">
+                  <label class="form-label" for="f1">Brand</label>
+                  <input
+                    type="text"
+                    formControlName="Brand"
+                    required=""
+                    class="form-control"
+                  />
+                  <small
+                    class="text-danger"
+                    *ngIf="
+                      addGarmentForm.get('Brand').hasError('required') &&
+                      (addGarmentForm.controls['Brand'].dirty ||
+                        addGarmentForm.controls['Brand'].touched)
+                    "
+                  >
+                    This field is required.
+                  </small>
+                </div>
+              </div>
+              <!-- Price -->
+              <div class="col-lg-6">
+                <div class="mb-4">
+                  <label class="form-label" for="f1">Price</label>
+                  <input
+                    type="text"
+                    formControlName="Price"
+                    required=""
+                    class="form-control"
+                  />
+                  <small
+                    class="text-danger"
+                    *ngIf="
+                      addGarmentForm.get('Price').hasError('required') &&
+                      (addGarmentForm.controls['Price'].dirty ||
+                        addGarmentForm.controls['Price'].touched)
+                    "
+                  >
+                    This field is required.
+                  </small>
+                </div>
+              </div>
+            </div>
+            <!-- CategoryId -->
+            <div class="row">
+              <div class="col-lg-6">
+                <label class="form-label" for="f1">Category</label>
+                <nb-select
+                  style="width: 80%; margin-left: 15px"
+                  [(ngModel)]="CategoryId"
+                  [ngModelOptions]="{ standalone: true }"
+                  (ngModelChange)="onCategorySelected()"
+                  placeholder="Choose here"
+                >
+                  <nb-option
+                    *ngFor="let item of categories"
+                    [value]="item.id"
+                    >{{ item.name }}</nb-option
+                  >
+                </nb-select>
+                <small class="text-danger" *ngIf="categoryValidation">
+                  This field is required.
+                </small>
+              </div>
+              <!-- Sizes -->
+              <div class="col-lg-6" style="margin-top: 5px">
+                <label class="form-label" style="width: 62px" for="f1"
+                  >Sizes</label
+                >
+                <nb-select
+                  style="width: 80%; margin-left: 15px"
+                  multiple
+                  [(ngModel)]="sizeIds"
+                  [ngModelOptions]="{ standalone: true }"
+                  [disabled]="CategoryId == 0"
+                  placeholder="Multiple Select"
+                >
+                  <nb-option *ngFor="let item of sizes" [value]="item.id">{{
+                    item.name
+                  }}</nb-option>
+                </nb-select>
+                <small class="text-danger" *ngIf="sizesValidation">
+                  This field is required.
+                </small>
+                <br />
+                <small
+                  style="margin-left: 25px; color: rgb(0, 132, 255)"
+                  *ngIf="CategoryId == 0"
+                  >Please select category first</small
+                >
+              </div>
+              <!-- Colors -->
+              <div class="offset-lg-6 col-lg-6" style="margin-top: 5px">
+                <label class="form-label" style="width: 62px" for="f1"
+                  >Colors</label
+                >
+                <nb-select
+                  style="width: 80%; margin-left: 15px"
+                  multiple
+                  formControlName="Colors"
+                  placeholder="Multiple Select"
+                >
+                  <nb-option *ngFor="let item of colors" [value]="item.id">{{
+                    item.name
+                  }}</nb-option>
+                </nb-select>
+                <small
+                  class="text-danger"
+                  *ngIf="
+                    addGarmentForm.get('Colors').hasError('required') &&
+                    (addGarmentForm.controls['Colors'].dirty ||
+                      addGarmentForm.controls['Colors'].touched)
+                  "
+                >
+                  This field is required.
+                </small>
+              </div>
+            </div>
+            <hr />
+            <!-- Properties    -->
+            <label class="form-label" for="f1">Properties </label>
+            <small class="text-danger" *ngIf="propertyValidation">
+              must select at least on property
+            </small>
+            <small
+              style="margin-left: 25px; color: rgb(0, 132, 255)"
+              *ngIf="CategoryId == 0"
+              >Please select category first</small
+            >
+            <div class="row">
+              <div
+                class="col-lg-6"
+                *ngFor="let item of Groups"
+                style="margin-top: 5px"
+              >
+                <label
+                  class="form-label"
+                  style="width: 67px; margin-top: 5px"
+                  for="f1"
+                  >{{ item.name }}</label
+                >
+                <nb-select
+                  style="width: 60%; margin-left: 15px"
+                  [(ngModel)]="item.Property"
+                  [ngModelOptions]="{ standalone: true }"
+                  placeholder="Multiple Select"
+                >
+                  <nb-option
+                    *ngFor="let item2 of item.propertysInsidGroup"
+                    [value]="item2.id"
+                    >{{ item2.name }}</nb-option
+                  >
+                </nb-select>
+              </div>
+            </div>
+            <hr />
+            <button
+              nbButton
+              status="success"
+              [disabled]="!addGarmentForm.valid"
+              (click)="submit()"
+            >
+              Edit
+            </button>
+            <button
+              style="margin-left: 25px"
+              nbButton
+              status="danger"
+              (click)="cancel()"
+            >
+              Close
+            </button>
+          </form>
+        </div>
+        <div class="col-4" style="border-left: 1px solid rgb(189, 189, 189)">
+          <div class="mb-4">
+            <label class="form-label" for="f1">Edit Image</label>
+            <input
+              type="file"
+              (change)="onFileSelected($event)"
+              required=""
+              class="form-control"
+              id="selectedFile"
+              style="display: none"
+            />
+            <i
+            class="far fa-image"
+            onclick="document.getElementById('selectedFile').click();"
+            style="
+              font-size: 40px;
+              opacity: 0.6;
+              cursor: pointer;
+              margin-left: 18px;
+              color: black;
+              display: block;
+            "
+            title="edit Photo"
+          ></i>
+            <!-- <small style="color: rgb(0, 132, 255)">
+            </small> -->
+          </div>
+
+          <img
+            [src]="url"
+            style="
+              max-width: 260px;
+              max-height: 400px;
+              border: 1px solid rgb(189, 189, 189);
+            "
+          />
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</div>

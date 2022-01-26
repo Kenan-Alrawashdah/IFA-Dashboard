@@ -1,3 +1,4 @@
+import { UserModel } from './../models/user.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ApiResponse } from '../../../constants/api.response.model';
@@ -5,6 +6,7 @@ import { Constants } from '../../../constants/constants';
 import { CategoryModel } from '../models/category.model';
 import { GroupModel } from '../models/group.model';
 import { PropertyModel } from '../models/property.model';
+import { StoreModel } from '../models/store.model';
 
 @Injectable({
   providedIn: 'root'
@@ -29,18 +31,26 @@ export class AdminService {
 
   public GetAllCategories()
   {
-    return this.http.get<CategoryModel[]>(this.baseUrl + 'category')
+    return this.http.get<ApiResponse<CategoryModel[]>>(this.baseUrl + 'category')
   }
 
   public DeleteCategory(id:number)
   {
     return this.http.delete<ApiResponse<number>>(this.baseUrl + 'category?id='+id)
   }
-
+  public DeleteUser(id:number)
+  {
+    return this.http.delete<ApiResponse<number>>(this.baseUrl + 'user?id='+id)
+  }
   //Group services
   public GetAllGroups()
   {
     return this.http.get<ApiResponse<GroupModel[]>>(this.baseUrl + 'group')
+  }
+
+  public GetAllUsers()
+  {
+    return this.http.get<ApiResponse<UserModel[]>>(this.baseUrl + 'user')
   }
 
   public CreateGroup(model:GroupModel)
@@ -80,6 +90,25 @@ export class AdminService {
   {
     return this.http.delete<ApiResponse<number>>(this.baseUrl + 'property?id='+id)
   }
+  // Store services
+  public GetAllNotApprovedStores()
+  {
+    return this.http.get<ApiResponse<StoreModel[]>>(this.baseUrl + 'store/StoresNotApproved')
+  }
+  public GetAllApprovedStores()
+  {
+    return this.http.get<ApiResponse<StoreModel[]>>(this.baseUrl + 'store')
+  }
 
-  
+  public ApproveStore(id:number)
+  {
+    return this.http.put<ApiResponse>(this.baseUrl+'store/Approved/'+id,{})
+  }
+
+  public DeleteStore(id:number)
+  {
+    return this.http.delete<ApiResponse>(this.baseUrl+'store?storeId='+id)
+  }
+
+
 }

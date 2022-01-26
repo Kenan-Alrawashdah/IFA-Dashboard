@@ -1,19 +1,151 @@
-<div class="row">
-  <div class="col-4">
-    <nb-card size="tiny">
-      <nb-card-body class="no-padding">
+<div class="container">
+  <div class="main-body">
+    <div class="row gutters-sm">
+      <div class="col-md-4 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex flex-column align-items-center text-center">
+              <!-- https://bootdey.com/img/Content/avatar/avatar7.png -->
+              <img
+                src="{{ imageHost }}{{ profileInfo.stroePhoto }}"
+                alt="Admin"
+                style="height: 275px; width: 95%"
+              />
 
-        <img src="../../../assets/images/camera1.jpg" class="img-size" />
-      </nb-card-body>
-    </nb-card>
-  </div>
-  <div class="col-8">
-    <nb-card size="tiny">
-     <h1> Store Name</h1>
-     <p>Kenan Hassan</p>
-     <p>kenan.rawawashdeh@gmail.com</p>
-     <p>+963792975755</p>
-     <p>Jorden, Amman, shaf</p>
-    </nb-card>
+              <div class="mt-1">
+                <input
+                  (change)="onFileSelected($event)"
+                  type="file"
+                  id="selectedFile"
+                  style="display: none"
+                />
+                <!-- <img
+
+                  src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                  width="40"
+                  height="40"
+                /> -->
+              </div>
+            </div>
+            <a
+            onclick="document.getElementById('selectedFile').click();"
+            >
+            <i
+            class="fa fa-edit"
+            style="
+              font-size: 20px;
+              opacity: 0.6;
+              cursor: pointer;
+              margin-left: 18px;
+              color: black;
+            "
+            title="Edit Store Photo"
+          ></i>Edit Image
+            </a>
+            
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-4">
+                <h6 class="mb-0" style="color: black">Store Name</h6>
+              </div>
+              <div class="col-8 text-secondary">
+                {{ profileInfo.storeName }}
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-4">
+                <h6 class="mb-0" style="color: black">First Name</h6>
+              </div>
+              <div class="col-8   text-secondary">
+                {{ profileInfo.firstName }}
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-4">
+                <h6 class="mb-0" style="color: black">Last Name</h6>
+              </div>
+              <div class="col-8 text-secondary">
+                {{ profileInfo.lastName }}
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-4">
+                <h6 class="mb-0" style="color: black">Email</h6>
+              </div>
+              <div class="col-8 text-secondary">
+                {{ profileInfo.email }}
+              </div>
+            </div>
+            <hr />
+
+            <div class="row">
+              <div class="col-4">
+                <h6 class="mb-0" style="color: black">Register at</h6>
+              </div>
+              <div class="col-8 text-secondary">
+                {{ profileInfo.createdAt | date }}
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-12">
+                <a class="Edit btn btn-info" (click)="openEditProfile()">Edit</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+<nb-card class="container">
+  <nb-card-header> Locations </nb-card-header>
+
+  <nb-card-body>
+    <ng2-smart-table
+      [settings]="settings"
+      [source]="profileInfo.locations"
+      (createConfirm)="onCreateConfirm($event)"
+      (deleteConfirm)="onDeleteConfirm($event)"
+      (editConfirm)="onSaveConfirm($event)"
+    >
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>
+<ng-template #edit let-data let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header>Edit Item</nb-card-header>
+    <nb-card-body>
+      <form>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="mb-4">
+              <label class="form-label" for="f1">F1</label>
+              <input type="text" required="" class="form-control" />
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="mb-4">
+              <label class="form-label" for="f2">f2</label>
+              <input type="text" class="form-control" />
+            </div>
+          </div>
+        </div>
+
+        <hr />
+        <button nbButton status="success" class="Edit" (click)="ref.close()">
+          Edit
+        </button>
+      </form>
+    </nb-card-body>
+  </nb-card>
+</ng-template>

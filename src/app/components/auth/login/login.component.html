@@ -1,10 +1,12 @@
-<h1 id="title" class="title">Login</h1>
-<p class="sub-title">IFA</p>
+<div  [nbSpinner]="loading" nbSpinnerStatus="danger">
 
+<h1 id="title" class="title">Login</h1>
+<p class="text-danger sub-title" *ngIf="errorValidation">
+  {{error}}
+</p>
 
 
 <form (ngSubmit)="login1()" [formGroup]="loginForm" aria-labelledby="title">
-
   <div class="form-control-group">
     <label class="label" for="input-email">Email address:</label>
     <input nbInput formControlName="email" fullWidth fieldSize="large" autofocus>
@@ -23,11 +25,9 @@
       This email is invalid.
     </small>
   </div>
-
   <div class="form-control-group">
     <span class="label-with-link">
       <label class="label" for="input-password">Password:</label>
-      <a class="forgot-password caption-2" routerLink="../request-password">Forgot Password?</a>
     </span>
     <input nbInput formControlName="password" fullWidth name="password" type="password">
     <small class="text-danger" *ngIf="
@@ -58,5 +58,6 @@
 
 
 <section class="another-action" aria-label="Register">
-  Don't have an account? <a class="text-link" routerLink="../register">Register</a>
+  Don't have an account? <a class="text-link" routerLink="/auth/register">Register</a>
 </section>
+</div>

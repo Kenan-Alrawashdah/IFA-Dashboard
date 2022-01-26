@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DefaultEditor } from 'ng2-smart-table';
-import { GroupModel } from '../../models/group.model';
-import { AdminService } from '../../services/admin.service';
+import { GroupModel } from '../../../models/group.model';
+import { AdminService } from '../../../services/admin.service';
 
 @Component({
   selector: 'ngx-group-select',

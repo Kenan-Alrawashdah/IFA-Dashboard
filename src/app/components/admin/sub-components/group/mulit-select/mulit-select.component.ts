@@ -23,7 +23,7 @@ export class MulitSelectComponent extends DefaultEditor {
     super();
     this.adminService.GetAllCategories().subscribe(
       (response)=>{
-          this.categories = response
+          this.categories = response.data
       }
     )
   }

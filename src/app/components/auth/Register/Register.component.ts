@@ -6,6 +6,8 @@ import {
   FormControl,
 } from "@angular/forms";
 import { NbRegisterComponent } from "@nebular/auth";
+import { NbToastrService } from "@nebular/theme";
+import { AuthService } from "../../../services/auth.service";
 import { AddStoreModel, Location } from "../models/addStore.model";
 
 @Component({
@@ -21,6 +23,13 @@ export class RegisterComponent extends NbRegisterComponent implements OnInit {
   loading: boolean = false;
   stepperIndex: number = 0;
   hedin: boolean = true;
+  err : string;
+  constructor(
+    private authService:AuthService ,
+    private toastr:NbToastrService
+  ){
+    super(null,{},null,null)
+  }
 
   ngOnInit() {
     this.firstForm = new FormGroup({
@@ -38,12 +47,13 @@ export class RegisterComponent extends NbRegisterComponent implements OnInit {
 
     this.secondForm = new FormGroup({
       storeName: new FormControl("", [Validators.required]),
-      phoneNumber: new FormControl("", [Validators.required]),
+
       username: new FormControl("", [Validators.required]),
     });
     this.thirdForm = new FormGroup({
       country: new FormControl("", [Validators.required]),
       city: new FormControl("", [Validators.required]),
+      phoneNumber: new FormControl("", [Validators.required]),
       street: new FormControl("", [Validators.required]),
     });
   }
@@ -59,39 +69,57 @@ export class RegisterComponent extends NbRegisterComponent implements OnInit {
   }
 
   onThirdSubmit() {
+    this.loading = true;
     this.store = new AddStoreModel();
     this.store.firstName = this.firstForm.get("firstName").value;
     this.store.lastName = this.firstForm.get("lastName").value;
     this.store.email = this.firstForm.get("email").value;
     this.store.password = this.firstForm.get("password").value;
-    this.store.phoneNumber = this.secondForm.get("phoneNumber").value;
     this.store.username = this.secondForm.get("username").value;
     this.store.storeName = this.secondForm.get("storeName").value;
     this.store.locations = [
       new Location(
         this.thirdForm.get("country").value,
         this.thirdForm.get("city").value,
-        this.thirdForm.get("street").value
+        this.thirdForm.get("street").value,
+        this.thirdForm.get("phoneNumber").value
       ),
     ];
+    console.log(this.store)
+    this.authService.register(this.store).subscribe(
+      (response)=>{
+        this.hedin = false;
+        this.stepperIndex = 3;
+        this.loading = false;
+      },
+      (errorResponse)=>{
+        console.log(errorResponse);
+        this.loading = false;
+      }
+
+    )
     console.log(this.store);
-    
-    this.hedin = false;
-    this.stepperIndex = 3;
+
+
   }
 
   checkEmail() {
     this.loading = true;
-    setTimeout(() => {
-      this.loading = false;
-      this.stepperIndex = 1;
-    }, 1500);
-    if (this.firstForm.get("email").value != null) {
-    }
-  }
+    this.authService.checkEmail(this.firstForm.get("email").value).subscribe(
+      (response)=>{
 
+          this.loading = false;
+          this.stepperIndex = 1;
+
+      },
+      (errorResponse)=>{
+        this.loading = false;
+        this.err = "The email is already taken please try another one";
+        this.toastr.warning('The email is already taken please try another one ', 'Warning',{duration:10000});
+      }
+    )
+  }
   next() {
-    console.log("kenan");
     this.stepperIndex = 2;
   }
   previous() {

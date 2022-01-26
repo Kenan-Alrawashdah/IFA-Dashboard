@@ -1,3 +1,4 @@
+import { UserComponent } from './../sub-components/user/user.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -10,9 +11,11 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { CategoryComponent } from '../sub-components/category/category.component';
 import { GroupComponent } from '../sub-components/group/group.component';
 import { MulitSelectComponent } from '../sub-components/group/mulit-select/mulit-select.component';
-import { PropertyComponent } from '../property/property.component';
-import { GroupSelectComponent } from '../property/group-select/group-select.component';
 import { AdminComponent } from '../admin.component';
+import { PendingStoresComponent } from '../sub-components/pending-stores/pending-stores.component';
+import { StoresComponent } from '../sub-components/stores/stores.component';
+import { PropertyComponent } from '../sub-components/property/property.component';
+import { GroupSelectComponent } from '../sub-components/property/group-select/group-select.component';
 
 
 @NgModule({
@@ -23,8 +26,10 @@ import { AdminComponent } from '../admin.component';
     GroupComponent,
     MulitSelectComponent,
     PropertyComponent ,
-    GroupSelectComponent
-    
+    GroupSelectComponent,
+    PendingStoresComponent,
+    StoresComponent,
+    UserComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +42,8 @@ import { AdminComponent } from '../admin.component';
     NbInputModule,
     ThemeModule,
     Ng2SmartTableModule,
-    NbSelectModule
+    NbSelectModule,
+
   ]
 })
 export class AdminModule { }

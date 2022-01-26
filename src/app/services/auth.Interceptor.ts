@@ -28,52 +28,53 @@ export class AuthInterceptor implements HttpInterceptor {
       authReq = this.addTokenHeader(req, token);
     }
 
-    return next.handle(authReq).pipe(catchError(error => {
-      if (error instanceof HttpErrorResponse &&  error.status === 0) {
-        return this.handle401Error(authReq, next);
+    return next.handle(authReq)
+    .pipe(catchError(error => {
+      if (error instanceof HttpErrorResponse &&  error.status === 401) {
+        this.tokenService.signOut();
       }
         return throwError(error);
     }));
   }
 
-  private handle401Error(request: HttpRequest<any>, next: HttpHandler) {
-    if (!this.isRefreshing) {
-      this.isRefreshing = true;
-      this.refreshTokenSubject.next(null);
+  // private handle401Error(request: HttpRequest<any>, next: HttpHandler) {
+  //   if (!this.isRefreshing) {
+  //     this.isRefreshing = true;
+  //     this.refreshTokenSubject.next(null);
 
-      const refreshToken = this.tokenService.getRefreshToken();
-      const token = this.tokenService.getToken();
-      if(token)
-      {
-        if (refreshToken)
-        return this.authService.refreshToken(token,refreshToken).pipe(
-          switchMap((token: any) => {
-            this.isRefreshing = false;
-            this.tokenService.saveToken(token.data.accessToken);
-            this.tokenService.saveRefreshToken(token.data.refreshToken);
-            this.refreshTokenSubject.next(token.accessToken);
-            return next.handle(this.addTokenHeader(request, token.data.accessToken));
-          }),
-          catchError((err) => {
+  //     const refreshToken = this.tokenService.getRefreshToken();
+  //     const token = this.tokenService.getToken();
+  //     if(token)
+  //     {
+  //       if (refreshToken)
+  //       return this.authService.refreshToken(token,refreshToken).pipe(
+  //         switchMap((token: any) => {
+  //           this.isRefreshing = false;
+  //           this.tokenService.saveToken(token.data.accessToken);
+  //           this.tokenService.saveRefreshToken(token.data.refreshToken);
+  //           this.refreshTokenSubject.next(token.accessToken);
+  //           return next.handle(this.addTokenHeader(request, token.data.accessToken));
+  //         }),
+  //         catchError((err) => {
 
-            this.isRefreshing = false;
-            this.tokenService.signOut();
-            return throwError(err);
-          })
-        );
-      }else{
-        this.router.navigate(['/Home/login']);
-        this.toastr.warning('You need to login to complete this action');
-      }
+  //           this.isRefreshing = false;
+  //           this.tokenService.signOut();
+  //           return throwError(err);
+  //         })
+  //       );
+  //     }else{
+  //       this.router.navigate(['/Home/login']);
+  //       this.toastr.warning('You need to login to complete this action');
+  //     }
       
-    }
+  //   }
 
-    return this.refreshTokenSubject.pipe(
-      filter(token => token !== null),
-      take(1),
-      switchMap((token) => next.handle(this.addTokenHeader(request, token)))
-    );
-  }
+  //   return this.refreshTokenSubject.pipe(
+  //     filter(token => token !== null),
+  //     take(1),
+  //     switchMap((token) => next.handle(this.addTokenHeader(request, token)))
+  //   );
+  // }
 
   private addTokenHeader(request: HttpRequest<any>, token: string) {
     

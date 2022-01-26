@@ -1,36 +1,33 @@
+<div class="row justify-content-end" style="margin-bottom: 15px;">
+  <button nbButton status="success" (click)="openAdd()">Add new garment</button>
+</div>
+
 <nb-card>
   <nb-card-body>
-    <nb-tabset (changeTab)="onEvento($event)" #dd>
+    <nb-tabset (changeTab)="onEvenTo($event)" #dd>
       <nb-tab
-        *ngFor="let item of cat"
-        [tabTitle]="item.cat"
+        *ngFor="let item of testTab; let i = index"
+        [tabTitle]="item.name"
         [badgePosition]="item.id"
+        [active]="i == 0 "
       >
         <div class="flex-container">
-          <nb-card *ngFor="let item of cat3" class="column-4" status="success">
-            <nb-card-body class="no-padding">
-              <nb-user
-                class="user"
-                size="medium"
-                name="John Doe"
-                title="Engineer"
-                color="white"
-                picture="https://via.placeholder.com/50/4479e7/ffffff?Text=IMG"
-              >
-              </nb-user>
-              <img src="../../../assets/images/camera1.jpg" class="img-size" />
+          <nb-card *ngFor="let item2 of item.garments" class="column-4" status="success">
+            <nb-card-body class="no-padding"  style="text-align: center;" >
+              <img src="{{imageHost}}{{item2.images[0]}}"class="img-size" />
             </nb-card-body>
             <nb-card-footer
-              ><span style="font-weight: bold">Item Name</span> <br /><span
+              ><span style="font-weight: bold">{{item2.name}}</span> <br /><span
                 style="color: gray"
-                >15$</span
+                >{{item2.price|currency}}</span
               >
               <nb-actions
                 size="tiny"
                 style="display: inline-flex; margin-left: 100px"
               >
-                <nb-action icon="edit" (click)="open(edit)"></nb-action>
-                <nb-action icon="trash" (click)="open(delete)"></nb-action>
+                <nb-action icon="edit" (click)="openEdit(item2)"></nb-action>
+                <!-- (click)="open(delete)" -->
+                <nb-action icon="trash" ></nb-action>
               </nb-actions>
             </nb-card-footer>
           </nb-card>
