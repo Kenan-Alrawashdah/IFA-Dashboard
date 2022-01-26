@@ -61,6 +61,7 @@
                 >
                   This email is invalid.
                 </small>
+                <small class="text-danger"  *ngIf="err">{{err}}</small>
           </div>
           <div class="form-control-group">
             <label class="label"  for="input-password">Password:</label>
@@ -83,7 +84,7 @@
                     firstForm.controls['password'].touched)
                   "
                 >
-                  This email is invalid.
+                Should have at least one number, one capital and small character
                 </small>
           </div>
           <button (click)="checkEmail()" [disabled]="!firstForm.valid" nbButton >next</button>
@@ -108,7 +109,7 @@
                    This field is required.
                  </small>
           </div>
-        
+
           <div class="form-control-group">
             <label class="label" for="input-name">Username:</label>
             <input nbInput formControlName="username"  autofocus fullWidth fieldSize="large"

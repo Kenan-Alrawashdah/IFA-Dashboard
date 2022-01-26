@@ -208,7 +208,7 @@
               [disabled]="!addGarmentForm.valid"
               (click)="submit()"
             >
-              Add
+              Edit
             </button>
             <button
               style="margin-left: 25px"
@@ -222,16 +222,30 @@
         </div>
         <div class="col-4" style="border-left: 1px solid rgb(189, 189, 189)">
           <div class="mb-4">
-            <label class="form-label" for="f1">Image</label>
+            <label class="form-label" for="f1">Edit Image</label>
             <input
               type="file"
               (change)="onFileSelected($event)"
               required=""
               class="form-control"
+              id="selectedFile"
+              style="display: none"
             />
-            <small style="color: rgb(0, 132, 255)">
-              leave it empty if you want the same pic
-            </small>
+            <i
+            class="far fa-image"
+            onclick="document.getElementById('selectedFile').click();"
+            style="
+              font-size: 40px;
+              opacity: 0.6;
+              cursor: pointer;
+              margin-left: 18px;
+              color: black;
+              display: block;
+            "
+            title="edit Photo"
+          ></i>
+            <!-- <small style="color: rgb(0, 132, 255)">
+            </small> -->
           </div>
 
           <img

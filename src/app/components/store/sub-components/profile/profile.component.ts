@@ -172,6 +172,7 @@ export class ProfileComponent implements OnInit {
       }
     );
   }
+
   open(dialog: TemplateRef<any>) {
     this.dialogService.open(dialog, {
       context: "this is some additional data passed to dialog",

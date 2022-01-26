@@ -23,7 +23,7 @@ export class RegisterComponent extends NbRegisterComponent implements OnInit {
   loading: boolean = false;
   stepperIndex: number = 0;
   hedin: boolean = true;
-
+  err : string;
   constructor(
     private authService:AuthService ,
     private toastr:NbToastrService
@@ -47,7 +47,7 @@ export class RegisterComponent extends NbRegisterComponent implements OnInit {
 
     this.secondForm = new FormGroup({
       storeName: new FormControl("", [Validators.required]),
-     
+
       username: new FormControl("", [Validators.required]),
     });
     this.thirdForm = new FormGroup({
@@ -96,10 +96,10 @@ export class RegisterComponent extends NbRegisterComponent implements OnInit {
         console.log(errorResponse);
         this.loading = false;
       }
-   
+
     )
     console.log(this.store);
-    
+
 
   }
 
@@ -107,14 +107,15 @@ export class RegisterComponent extends NbRegisterComponent implements OnInit {
     this.loading = true;
     this.authService.checkEmail(this.firstForm.get("email").value).subscribe(
       (response)=>{
-      
+
           this.loading = false;
           this.stepperIndex = 1;
-      
+
       },
       (errorResponse)=>{
         this.loading = false;
-        this.toastr.warning('The email is already taken please try another one ', 'Warning',{duration:2000});
+        this.err = "The email is already taken please try another one";
+        this.toastr.warning('The email is already taken please try another one ', 'Warning',{duration:10000});
       }
     )
   }

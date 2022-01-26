@@ -222,13 +222,29 @@
         </div>
         <div class="col-4" style="border-left: 1px solid rgb(189, 189, 189)">
           <div class="mb-4">
-            <label class="form-label" for="f1">Image</label>
+            <label class="form-label" for="f1">Add Image</label>
+
             <input
               type="file"
               (change)="onFileSelected($event)"
               required=""
               class="form-control"
+              id="selectedFile"
+              style="display: none"
             />
+            <i
+            class="far fa-image"
+            onclick="document.getElementById('selectedFile').click();"
+            style="
+              font-size: 40px;
+              opacity: 0.6;
+              cursor: pointer;
+              margin-left: 18px;
+              color: black;
+              display: block;
+            "
+            title="add Photo"
+          ></i>
             <small class="text-danger" *ngIf="imageValidation">
               This field is required.
             </small>
